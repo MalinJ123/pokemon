@@ -1,5 +1,6 @@
-* {
-	box-sizing: border-box;
+/* font-family: 'Bubblegum Sans', cursive; */
+
+* {	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
@@ -8,18 +9,93 @@ body {
 	background-color: black;
 }
 
+/* --------------START PAGE---------------- */
 .start-page{
-		display: flex;
+	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .pokemon-logga{
 	width: fit-content;
-	height: 4em;
+	height: 5em;
+	margin: 2em 0 4em;
 }
 #myTeam-btn,
 #choosePokemon-btn{
-	border-radius: 30%;
-	max-width: 15em;
-	max-height: auto;
+	border-radius: 10px;
+	padding: 0.4em 1.2em;
+	font-weight: bold;
+	font-family: 'Bubblegum Sans', cursive;
+	margin-bottom: 0.5em;
+}
+#myTeam-btn:hover,
+#choosePokemon-btn:hover{
+	background-color: rgb(104, 58, 146);
+	color: white;
+	font-size: 15px;
+}
+.background-pokemon-pic{
+	margin-top: 3em;
+}
+
+@media (min-width: 500px) {
+	.background-pokemon-pic{
+	margin: 10em 0 4em ;
+	width:fit-content;
+	height: 15em;
+	}
+	
+#myTeam-btn,
+#choosePokemon-btn{
+	border-radius: 10px;
+	padding: 0.4em 4.2em;
+	font-weight: bold;
+	font-family: 'Bubblegum Sans', cursive;
+}
+.pokemon-logga{
+	width: fit-content;
+	height: 7em;
+	margin: 2em 0 7em;
+}
+
+}
+
+/* --------------PopOverlay-MyTeamBtn---------------- */
+
+.popOverlay-choosePokemon,
+.PopOverlay-MyTeamBtn{
+	background-color: rgba(0, 0, 0, 0.905);
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.popOverlayWhite-choosePokemon,
+.popOverlayWhite{
+	background-color: #ffffffe8;
+	color: rgb(0, 0, 0);
+	width: 80%;
+	height: 60%;
+	text-align: center;
+	display: flex;
+	/* flex-direction: column;
+	align-items: center;
+	justify-content: center;  */
+}
+
+.myTeamHeader{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: aliceblue;
+	
 }
