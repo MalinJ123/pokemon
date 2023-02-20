@@ -5,11 +5,21 @@
 }
 
 body {
-	margin: 0;
-	box-sizing: border-box;
-	background-image: url('/assets/Pokemon\ \(1\).jpg');
-	background-attachment:fixed;
-	background-repeat: no-repeat;
-	background-size:100% ;
-	display: flex;
+	background-color: black;
+}
+
+.start-page{
+		display: flex;
+	flex-direction: column;
+}
+
+.pokemon-logga{
+	width: fit-content;
+	height: 4em;
+}
+#myTeam-btn,
+#choosePokemon-btn{
+	border-radius: 30%;
+	max-width: 15em;
+	max-height: auto;
 }
