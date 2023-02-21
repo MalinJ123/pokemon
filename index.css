@@ -92,7 +92,7 @@ body {
 	}
 }
 
-/* --------------PopOverlay-MyTeamBtn---------------- */
+/* --------------MyTeamBtn---------------- */
 
 .popOverlay-choosePokemon,
 .PopOverlay-MyTeamBtn{
@@ -121,6 +121,7 @@ body {
 	margin-top: 8em;
 }
 
+/* ------------------------------ Choose Team -------------- */
 .myChooseteam-card{
 	border: 2px solid rgba(0, 0, 0, 0.494);
 	width: 5em;
@@ -130,7 +131,6 @@ body {
 	margin: 1.1em 0.3em 2em;
 
 }
-
 .myChooseteam-card:first-child{
 	margin-top: 13em;
 }
@@ -138,6 +138,8 @@ body {
 	width: 3em;
 	height: 4em;
 }
-/* .pokemon-cards{
-	border: 2px solid pink; 
-} */
+
+.input{
+	border: 2px dotted black; 
+	padding: 0.5em;
+}
