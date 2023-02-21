@@ -3,6 +3,7 @@
 * {	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: 'Bubblegum Sans', cursive;
 }
 
 body {
@@ -28,7 +29,6 @@ body {
 	border-radius: 10px;
 	padding: 0.4em 1.2em;
 	font-weight: bold;
-	font-family: 'Bubblegum Sans', cursive;
 	margin-bottom: 0.5em;
 }
 #myTeam-btn:hover,
@@ -86,16 +86,24 @@ body {
 	height: 60%;
 	text-align: center;
 	display: flex;
-	/* flex-direction: column;
 	align-items: center;
-	justify-content: center;  */
+	justify-content: center; 
+}
+.choose-header,
+.myTeamHeader{
+	position: absolute;
+	top: 8em;
+	/* left: ; */
+	color: rgb(0, 0, 0);
 }
 
-.myTeamHeader{
-	
-	position: absolute;
-	top: 0;
-	left: 0;
-	color: aliceblue;
-	
+/* .myteam-card{
+	border: 2px solid black;
+
+}
+.myteam-imge{
+	border: 2px solid black;
+} */
+.pokemon-cards{
+	border: 2px solid pink; 
 }

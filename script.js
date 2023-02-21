@@ -4,14 +4,17 @@ let myTeamBtn = document.querySelector('#myTeam-btn')
 let choosePokemonBtn = document.querySelector('#choosePokemon-btn')
 let body = document.querySelector('body')
 
-
+// LÄGG FUNKTIONERNA HÄR
 myTeamBtn.addEventListener('click', () => {
    createMyTeamPopOverlay()
 } )
-
-choosePokemonBtn.addEventListener('click', () =>{
-   creatChoosePokemonOverlay()
+choosePokemonBtn.addEventListener('click', async () =>{
+   createChoosePokemonOverlay()
+   getPokemonData ()
+   renderPokemonData(data)
 })
+// const data = await getPokemonData ()
+
 
 function createMyTeamPopOverlay(){
    let popOverlayMyTeamBtn = document.createElement("div")
@@ -36,36 +39,98 @@ function createMyTeamPopOverlay(){
       popOverlayMyTeamBtn.remove();
    }) 
 }
-
-function creatChoosePokemonOverlay(){
-
-   let popOverlayChoosePokemon = document.createElement("div")
-   let PopOverlayWhiteChoosePokemon = document.createElement("div")
-
-   popOverlayChoosePokemon.classList.add("popOverlay-choosePokemon")
-   PopOverlayWhiteChoosePokemon.classList.add("popOverlayWhite-choosePokemon")
-
+function createChoosePokemonOverlay() {
+   let popOverlayChoosePokemon = document.createElement("div");
+   let popOverlayWhiteChoosePokemon = document.createElement("div");
+   let chooseHeader = document.createElement("h2");
+   chooseHeader.innerText = "Välj pokemon";
+   chooseHeader.classList.add("choose-header");
+   popOverlayChoosePokemon.classList.add("popOverlay-choosePokemon");
+   popOverlayWhiteChoosePokemon.classList.add("popOverlayWhite-choosePokemon");
+ 
    body.append(popOverlayChoosePokemon);
-   popOverlayChoosePokemon.append(PopOverlayWhiteChoosePokemon)
+   popOverlayChoosePokemon.append(popOverlayWhiteChoosePokemon);
+   popOverlayWhiteChoosePokemon.append(chooseHeader);
+ 
+   // fetch Pokemon data from the API
+   fetch("https://pokeapi.co/api/v2/pokemon")
+     .then(response => response.json())
+     .then(data => {
+       // render the Pokemon data as cards
+       renderPokemonData(data.results);
+     });
+ 
+   popOverlayWhiteChoosePokemon.addEventListener("click", event => {
+     console.log("du klickade på den vita overlayen");
+     event.stopPropagation();
+   });
+   popOverlayChoosePokemon.addEventListener("click", () => {
+     console.log("du klickade på den svarta overlayen");
+     popOverlayChoosePokemon.remove();
+   });
+ }
 
-   PopOverlayWhiteChoosePokemon.addEventListener('click', (event) => {
-      console.log('du klickade på den vita overlayen')
-      event.stopPropagation();
-   })
-   popOverlayChoosePokemon.addEventListener('click', () => {
-      console.log('du klickade på den svarta overlayen')
-      popOverlayChoosePokemon.remove();
-   }) 
+// kan man skapa imge src ? 
+function createPokemonCard (){
+   let cardDiv = document.querySelector("div")
+   let cardImge = document.querySelector("img")
+   cardDiv.classList.add("myteam-card")
+   cardImge.classList.add("myteam-imge")
 
+   popOverlayWhite.append(cardDiv)
+   cardDiv.append(cardImge)
 }
 
-// function removeOverlay(){
-//    closeOverlayBtn.addEventListener('click', () => {
-//    console.log('Du klickade på knappen')
-//    popOverlayMyTeamBtn.remove(); // remove the parent overlay
-// })}
+async function getPokemonData() {
+   const url = 'https://pokeapi.co/api/v2/pokemon/'
+ 
+   console.log('Nu hämtar Jag data i från API')
+   const response = await fetch(url)
+   const data = await response.json()
+   console.log('Nu VÄNTAR Jag på data i från API')
+   
+   console.log(' Nu borde jag ha fått datan och den ser ut såhär  : ' + JSON.stringify(data, null, 2))
 
-// PopOverlayWhite.style.display: none;
+   return data
+ }
+
+ function renderPokemonData() {
+   const parentElement = document.querySelector("pokemon-cards");
+   forEach(pokemon => {
+     // create the card element
+     const card = document.createElement("div");
+     card.classList.add("myteam-card");
+
+    // create the name element
+     const name = document.createElement("h4");
+     name.classList.add("pokemonNametag");
+
+     // create the image element
+     const image = document.createElement("img");
+     image.classList.add("myteam-imge");
+     image.src = pokemon.sprites.front_default;
+ 
+      // creata list element
+      let list = document.querySelector('ul')
+      let li = document.querySelector('li')
+      list.classList.add('choose-list')
+      li.classList.add('li-element')
+
+
+     // append the elements to the card and the card to the parent element
+       parentElement.appendChild(card.ul);
+      //  card.appendChild(name);
+      //  card.appendChild(image);
+      //  card.append(ul);
+       ul.append(li);
+   
+   });
+
+
+ }
+
+
+
 
 
 /* 1. Jag behöver en function för knappen "Mitt Team" 
