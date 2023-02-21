@@ -90,6 +90,7 @@ body {
 	.myTeamHeader{
 		visibility: visible;
 	}
+
 }
 
 /* --------------MyTeamBtn---------------- */
@@ -128,7 +129,7 @@ body {
 	height: 6em;
 	display: flex;
 	flex-direction: column;
-	margin: 1.1em 0.3em 2em;
+	margin: 0.15em;
 
 }
 .myChooseteam-card:first-child{
@@ -142,4 +143,5 @@ body {
 .input{
 	border: 2px dotted black; 
 	padding: 0.5em;
+	margin: 2em 0em 1em 0em;
 }
