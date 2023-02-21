@@ -41,7 +41,7 @@ body {
 	margin-top: 3em;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 400px) {
 	.background-pokemon-pic{
 	margin: 10em 0 4em ;
 	width:fit-content;
@@ -60,7 +60,36 @@ body {
 	height: 7em;
 	margin: 2em 0 7em;
 }
+.choose-header,
+.myTeamHeader{
+	position: fixed;
+	top: 3em;
+	z-index: 4;
+	color: rgb(248, 246, 246);
+}
+.popOverlayWhite-choosePokemon,
+.popOverlayWhite{
+	flex-wrap: wrap;
+	
+}
+.popOverlayWhite-choosePokemon,
+.popOverlayWhite{
+	
+	margin-top: 16em;
+}
+}
+@media (min-width: 396px){
+	.choose-header,
+	.myTeamHeader{
+		visibility: hidden;
+	}
+}
 
+@media (min-width: 746px){
+	.choose-header,
+	.myTeamHeader{
+		visibility: visible;
+	}
 }
 
 /* --------------PopOverlay-MyTeamBtn---------------- */
@@ -82,28 +111,33 @@ body {
 .popOverlayWhite{
 	background-color: #ffffffe8;
 	color: rgb(0, 0, 0);
-	width: 80%;
-	height: 60%;
+	width: 60%;
+	height: auto;
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center; 
-}
-.choose-header,
-.myTeamHeader{
-	position: absolute;
-	top: 8em;
-	/* left: ; */
-	color: rgb(0, 0, 0);
+	flex-wrap: wrap;
+	margin-top: 8em;
 }
 
-/* .myteam-card{
-	border: 2px solid black;
+.myChooseteam-card{
+	border: 2px solid rgba(0, 0, 0, 0.494);
+	width: 5em;
+	height: 6em;
+	display: flex;
+	flex-direction: column;
+	margin: 1.1em 0.3em 2em;
 
 }
-.myteam-imge{
-	border: 2px solid black;
-} */
-.pokemon-cards{
+
+.myChooseteam-card:first-child{
+	margin-top: 13em;
+}
+.myChooseteam-image{
+	width: 3em;
+	height: 4em;
+}
+/* .pokemon-cards{
 	border: 2px solid pink; 
-}
+} */
