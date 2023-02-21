@@ -121,7 +121,7 @@ async function getPokemonData() {
        parentElement.appendChild(card.ul);
       //  card.appendChild(name);
       //  card.appendChild(image);
-      //  card.append(ul);
+       card.append(ul);
        ul.append(li);
    
    });
