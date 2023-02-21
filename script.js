@@ -99,7 +99,6 @@ function createCardSelectBTn(cardDiv) {
   cardDiv.append(selectBtn);
 } 
 
-
 function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
   if (pokemonData) {
     pokemonData.forEach(pokemon => {
@@ -124,7 +123,7 @@ function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
       selectBtn.classList.add("selectBtn");
       selectBtn.textContent = "Select";
 
-      cardImg.src = pokemon.sprites?.front_default;
+      cardImg.src = pokemon.sprites?.front_default || '';
       name.innerText = pokemon.name;
       
       popOverlayWhiteChoose.append(cardDiv);
@@ -134,13 +133,10 @@ function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
 
       selectBtn.addEventListener('click', () => {
           console.log('Du klickade på select knappen ');
-          
-
       });
     });
   }
 }
-
 function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
   // Clear the existing cards
   popOverlayWhiteChoose.querySelectorAll('.myChooseteam-card').forEach(card => card.remove());
@@ -169,7 +165,7 @@ function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
       selectBtn.classList.add("selectBtn");
       selectBtn.textContent = "Select";
 
-      cardImg.src = pokemon.sprites?.front_default;
+      cardImg.src = pokemon.sprites?.front_default || '';
       name.innerText = pokemon.name;
       
       popOverlayWhiteChoose.append(cardDiv);
@@ -179,8 +175,6 @@ function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
 
       selectBtn.addEventListener('click', () => {
           console.log('Du klickade på select knappen ');
-          
-
       });
     });
   }
