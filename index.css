@@ -129,8 +129,11 @@ body {
 	height: 6em;
 	display: flex;
 	flex-direction: column;
-	margin: 0.15em;
+	margin: 10px;
+	border-radius: 5px;
 
+	
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 .myChooseteam-card:first-child{
 	margin-top: 13em;
@@ -138,6 +141,8 @@ body {
 .myChooseteam-image{
 	width: 3em;
 	height: 4em;
+	display: flex;
+
 }
 
 .input{
@@ -145,3 +150,5 @@ body {
 	padding: 0.5em;
 	margin: 2em 0em 1em 0em;
 }
+
+  

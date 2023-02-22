@@ -2,6 +2,10 @@ let myTeamBtn = document.querySelector('#myTeam-btn')
 let choosePokemonBtn = document.querySelector('#choosePokemon-btn')
 let body = document.querySelector('body')
 
+// ---------------------------
+let popOverlayWhite = null;
+// ----------------------------
+
 let pokemonData = null  // objekt med { results }
 let selectedPokemon = null  // den valda pokemonnen
 let myTeam = []   // här lägger du till pokemons till laget
@@ -30,7 +34,7 @@ function createMyTeamPopOverlay() {
   
   body.append(popOverlayMyTeamBtn)
   popOverlayMyTeamBtn.append(popOverlayWhite)
-  PopOverlayWhite.append(myTeamHeader)
+  popOverlayWhite.append(myTeamHeader)
   
   popOverlayWhite.addEventListener('click', (event) => {
     console.log('du klickade på den vita overlayen')
@@ -41,7 +45,6 @@ function createMyTeamPopOverlay() {
     popOverlayMyTeamBtn.remove()
   })
 }
-
 
 
 
@@ -119,7 +122,7 @@ function createChoosePokemonOverlay() {
   popOverlayWhiteChoosePokemon.append(chooseHeader)
   
   popOverlayWhiteChoosePokemon.addEventListener("click", (event) => {
-    console.log("du klickade Select knappen")
+    // console.log("du klickade choose VITA overlay knappen")
     event.stopPropagation()
   })
   popOverlayChoosePokemon.addEventListener("click", () => {
@@ -128,22 +131,23 @@ function createChoosePokemonOverlay() {
   })
   
   return popOverlayWhiteChoosePokemon
+
+  
 }
 
 
-
-
-
-
-
-function createCardSelectBTn(cardDiv) {
+function createCardSelectBtn(cardDiv) {
   let selectBtn = document.createElement('button');
   selectBtn.classList.add('selectBtn');
   selectBtn.textContent = 'Select';
-  cardDiv.append(selectBtn);
-} 
-
-
+  
+  selectBtn.addEventListener('click', () => {
+    popOverlayWhite.appendChild(cardDiv);
+    cardDiv.style.display = 'block';
+  });
+  
+  return selectBtn;
+}
 
 
 
@@ -188,17 +192,20 @@ function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
         console.log('Du klickade på select knappen ');
         // 1. uppdatera variabeln selectedPokemon
         // 2. uppdatera gränssnittet (rendera) - men detta görs inte förrän man byter till "my team"-vyn
+        displaySelectedPokemon()
       });
     });
   }
 }
+
+
 function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
   // Clear the existing cards
   popOverlayWhiteChoose.querySelectorAll('.myChooseteam-card').forEach(card => card.remove());
   
   if (pokemonData) {
     pokemonCardDiv(pokemonData, popOverlayWhiteChoose);
-    createCardSelectBTn(cardDiv);
+    // createCardSelectBTn(cardDiv);
   } else if (pokemonData) {
     pokemonData.forEach(pokemon => {
       // ...
@@ -231,7 +238,6 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
     // Detta görs flera gånger (1 per pokemon)
 		// ----------------------------- The search btn in choosePokemon Overlayen
 
-
 		let cardDiv = document.createElement("div");
 		let cardImg = document.createElement("img");
 		let name = document.createElement("h5");
@@ -243,11 +249,10 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 		selectBtn.classList.add("selectBtn");
 		selectBtn.textContent = "Select";
 
-		// cardImg.src = pokemon.sprites || '';
 		name.innerText = pokemon.name;
 		cardImg.src = pokemon.sprites;
-    console.log('Kontrollera vad en pokemon är: ', pokemon)
-		console.log("Kontrollera renderfunktionen:", name.innerText, cardImg.src);
+    // console.log('Kontrollera vad en pokemon är: ', pokemon)
+		// console.log("Kontrollera renderfunktionen:", name.innerText, cardImg.src);
 
 		popOverlayWhiteChoose.append(cardDiv);
 		cardDiv.append(name);
@@ -255,7 +260,7 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 		cardDiv.append(selectBtn);
 
 		selectBtn.addEventListener("click", () => {
-			console.log("Du klickade på select knappen ");
+			// console.log("Du klickade på select knappen ");
       // Lägg till vald pokemon till myTeam-listan
       displaySelectedPokemon();
 		});
@@ -263,15 +268,14 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 }  //pokemonCardDiv
 
 
-function displaySelectedPokemon(){
-
+function displaySelectedPokemon() {
   if (selectedPokemon) {
-    const newPokemonDiv = document.createElement("div");
+    const newPokemonDiv = document.createElement("div")
     newPokemonDiv.classList.add("pokemon");
-    const newPokemonImg = document.createElement("img");
+    const newPokemonImg = document.createElement("img")
     newPokemonImg.src = selectedPokemon.sprites;
-    const newPokemonName = document.createElement("span");
-    newPokemonName.innerText = popOverlayWhite.name;  // TODO byt denna
+    const newPokemonName = document.createElement("h5")
+    newPokemonName.innerText = selectedPokemon.name
     const newChangeNameBtn = document.querySelector("button")
     newChangeNameBtn.classList.add('changeNameBtn')
     newChangeNameBtn.placeholder = 'Change name'
@@ -279,9 +283,16 @@ function displaySelectedPokemon(){
     newPokemonDiv.append(newPokemonImg, newPokemonName, newChangeNameBtn);
     popOverlayWhite.append(newPokemonDiv);
 
-    // selectedPokemon = undefined;
+    const copiedSelectedPokemon = { ...selectedPokemon }
+    myTeam.push(copiedSelectedPokemon) // add the copied object to the myTeam array
+
+    console.log('CopiedSelectedPokemon ser ut såhär i den nya listan', copiedSelectedPokemon);
+    console.log('myTeam ser ut såhär', myTeam);
+
     popOverlayChoosePokemon.remove();
   } else {
-    console.log("No pokemon selected.");
+    console.log("No pokemon selected");
   }
 }
+
+const selectBtn = document.querySelector('#selectBtn');
