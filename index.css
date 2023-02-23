@@ -7,7 +7,7 @@
 }
 
 body {
-	background-color: black;
+	background-color: rgb(0, 0, 0);
 }
 
 /* --------------START PAGE---------------- */
@@ -93,6 +93,12 @@ body {
 
 }
 
+  /* ---------My Team ---------------- */
+
+
+
+
+
 /* --------------MyTeamBtn---------------- */
 
 .popOverlay-choosePokemon,
@@ -123,6 +129,7 @@ body {
 }
 
 /* ------------------------------ Choose Team -------------- */
+.pokemon,
 .myChooseteam-card{
 	border: 2px solid rgba(0, 0, 0, 0.494);
 	width: 5em;
@@ -150,5 +157,3 @@ body {
 	padding: 0.5em;
 	margin: 2em 0em 1em 0em;
 }
-
-  
