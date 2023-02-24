@@ -18,12 +18,19 @@ body {
 	align-items: center;
 	width: 100%;
 }
+.container{
+display: flex;
+flex-direction: column;
+width: 10em;
+height: 4em;
+}
 
 .pokemon-logga{
 	width: fit-content;
 	height: 5em;
 	margin: 2em 0 4em;
 }
+
 #myTeam-btn,
 #choosePokemon-btn{
 	border-radius: 10px;
@@ -41,66 +48,35 @@ body {
 	margin-top: 3em;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 430px) {
 	.background-pokemon-pic{
 	margin: 10em 0 4em ;
 	width:fit-content;
 	height: 15em;
 	}
 	
-#myTeam-btn,
-#choosePokemon-btn{
-	border-radius: 10px;
-	padding: 0.4em 4.2em;
-	font-weight: bold;
-	font-family: 'Bubblegum Sans', cursive;
-}
 .pokemon-logga{
 	width: fit-content;
 	height: 7em;
 	margin: 2em 0 7em;
 }
+.popOverlayWhite-choosePokemon,
+.popOverlayWhite,
 .choose-header,
 .myTeamHeader{
 	position: fixed;
-	top: 3em;
-	z-index: 4;
+	top: 7em;
 	color: rgb(248, 246, 246);
-}
-.popOverlayWhite-choosePokemon,
-.popOverlayWhite{
-	flex-wrap: wrap;
-	
-}
-.popOverlayWhite-choosePokemon,
-.popOverlayWhite{
-	
-	margin-top: 16em;
-}
-}
-@media (min-width: 396px){
-	.choose-header,
-	.myTeamHeader{
-		visibility: hidden;
 	}
 }
 
-@media (min-width: 746px){
-	.choose-header,
-	.myTeamHeader{
-		visibility: visible;
+@media (min-width: 600px) {
+	.background-pokemon-pic{
+	margin: 10em 0 4em ;
+	width:fit-content;
+	height: 20em;
 	}
-
 }
-
-  /* ---------My Team ---------------- */
-
-
-
-
-
-/* --------------MyTeamBtn---------------- */
-
 .popOverlay-choosePokemon,
 .popOverlay-MyTeam{
 	background-color: rgba(0, 0, 0, 0.905);
@@ -130,56 +106,59 @@ body {
 
 /* ------------------------------ Choose Team -------------- */
 .pokemon,
-.myChooseteam-card{
+.myChooseteam-card
+{
 	border: 2px solid rgba(0, 0, 0, 0.494);
-	width: 5em;
-	height: 6em;
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
 	border-radius: 5px;
-
-	
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 .myChooseteam-card:first-child{
-	margin-top: 13em;
+	/* margin-top: 13em; */
 }
-.myChooseteam-image{
-	width: 3em;
-	height: 4em;
-	display: flex;
 
-}
 
 .input{
 	border: 2px dotted black; 
 	padding: 0.5em;
 	margin: 2em 0em 1em 0em;
 }
-/* --------------------
 
-*/
-.up-btn, .down-btn {
-	background-color: #4CAF50;
-	border: none;
-	color: white;
-	padding: 10px 15px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
+
+  
+  .upBtn:hover,
+  .downBtn:hover,
+  .selectBtn:hover, 
+  .removeBtn:hover,
+  .nameInput:hover,
+  .changeNameBtn:hover {
+	         
+
+		background-image: linear-gradient(to right, #ff00cc 0%, #333399  51%, #ff00cc  100%);
+		margin: 3px;
+
+	  
+		background-position: right center; /* change the direction of the change here */
+		color: #fff;
+		text-decoration: none;
+	 
+  }  
+
+          
+
+  .upBtn,
+  .downBtn,
+  .selectBtn, 
+  .removeBtn,
+  .nameInput,
+  .changeNameBtn {
 	cursor: pointer;
-  }
-  
-  .up-btn:hover, .down-btn:hover {
-	background-color: #3e8e41;
-  }
-  
-  .up-btn:active, .down-btn:active {
-	background-color: #3e8e41;
-	box-shadow: 0 5px #666;
-	transform: translateY(4px);
-  }
-  
+	/* background-color: rgb(123, 75, 167); */
+	/* color: white; */
+	background-image: linear-gradient(to right, #834d9b 0%, #d04ed6  51%, #834d9b  100%);
+	transition: 0.2s;
+	color: white;            
+	box-shadow: 0 0 20px #eee;
+  } 

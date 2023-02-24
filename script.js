@@ -23,10 +23,6 @@ choosePokemonBtn.addEventListener("click", async () => {
 		pokemonData.results[0].sprites
 	);
 });
-// -------------------
-
-
-
 
 function createMyTeamPopOverlay() {
 	let popOverlayMyTeam = document.createElement("div");
@@ -64,9 +60,6 @@ function createMyTeamPopOverlay() {
 	  newPokemonName.innerText = pokemon.name;
 	  newPokemonImg.src = pokemon.sprites;
 
-
-
-// --------------------
 const newUpBtn = document.createElement("button");
 newUpBtn.innerText = "Up";
 newUpBtn.classList.add("upBtn");
@@ -75,9 +68,6 @@ const newDownBtn = document.createElement("button");
 newDownBtn.innerText = "Down";
 newDownBtn.classList.add("downBtn");
 
-// -----------------------
-
-  
 	  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput);
 	  newPokemonImg.src = pokemon.sprites;
 	  newPokemonName.innerText = pokemon.name;
@@ -103,8 +93,6 @@ newDownBtn.classList.add("downBtn");
 		newPokemonCard.remove(); // Remove pokemon card from overlay
 	  });
   
-
-
 	newUpBtn.addEventListener("click", (event) => {
 		event.stopPropagation();
 		if (index > 0) {
@@ -134,10 +122,6 @@ newDownBtn.classList.add("downBtn");
  
  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput, newUpBtn, newDownBtn, newRemoveBtn);
  popOverlayWhite.append(newPokemonCard);
-
-
-
-
 	
 	popOverlayWhite.addEventListener("click", (event) => {
 	  event.stopPropagation();
@@ -155,6 +139,9 @@ newDownBtn.classList.add("downBtn");
 
 
 
+
+// ---------------
+
   
 function addPokemonToTeam(pokemon) {
   if (myTeam.length >= 3) {
@@ -170,7 +157,7 @@ function addPokemonToTeam(pokemon) {
 
 async function getPokemonData() {
 	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
-	const url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+	const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
 
 	console.log("Nu hämtar Jag data i från API");
 	const response = await fetch(url);
@@ -376,13 +363,10 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 } //pokemonCardDiv
 
 
-const selectBtn = document.querySelector("#selectBtn");
+// const selectBtn = document.querySelector("#selectBtn");
 
 
 
-// Någon idée för hur jag kan få rad 104 att fungera? 
-//När Jag är i "mitt team" så kan jag ej klicka på svarta overlayen för att stänga / måste ladda om 
-// När man laddar om försvinner de valda pokemonen. 
 
 
 
@@ -423,3 +407,79 @@ const selectBtn = document.querySelector("#selectBtn");
 //   }
 //   createMyTeamPopOverlay() 
 // }
+
+
+
+
+
+
+
+
+// function updateHeader() {
+// 	// Get all checkboxes
+// 	const checkboxes = document.getElementsByName('pokemon');
+	
+// 	// Count how many are checked
+// 	let checkedCount = 0;
+// 	for (let i = 0; i < checkboxes.length; i++) {
+// 	  if (checkboxes[i].checked) {
+// 		checkedCount++;
+// 	  }
+// 	}
+	
+// 	// Update header text
+// 	const header = document.getElementById('header');
+// 	if (checkedCount === 0) {
+// 	  header.textContent = 'Select your team of 3 Pokemon';
+// 	} else if (checkedCount === 1) {
+// 	  header.textContent = 'You have selected 1 Pokemon';
+// 	} else if (checkedCount === 2) {
+// 	  header.textContent = 'You have selected 2 Pokemon';
+// 	} else if (checkedCount === 3) {
+// 	  header.textContent = 'You have selected 3 Pokemon';
+// 	} else {
+// 	  header.textContent = 'You have selected more than 3 Pokemon';
+// 	  // Display overlay
+// 	  const overlay = document.getElementById('overlay');
+// 	  overlay.style.display = 'block';
+// 	}
+//   }
+
+
+
+
+
+  
+// function selectedPokemon(event) {
+// 	const pokemonCard = event.target.closest(".pokemon-card");
+// 	if (!pokemonCard) {
+// 	  return;
+// 	}
+  
+// 	const pokemonId = pokemonCard.dataset.id;
+// 	const pokemonIndex = selectedPokemon.indexOf(pokemonId);
+  
+// 	if (pokemonIndex === -1 && selectedPokemon.length < 3) {
+// 	  // Add the Pokemon to the selected list
+// 	  selectedPokemon.push(pokemonId);
+// 	  pokemonCard.classList.add("selected");
+// 	} else if (pokemonIndex !== -1) {
+// 	  // Remove the Pokemon from the selected list
+// 	  selectedPokemon.splice(pokemonIndex, 1);
+// 	  pokemonCard.classList.remove("selected");
+// 	}
+  
+// 	// Update the number of selected Pokemon
+// 	const numSelected = selectedPokemon.length;
+// 	const numSelectedText = `Selected Pokemon: ${numSelected}/3`;
+// 	const selectedPokemonHeader = document.querySelector(".selected-pokemon-header");
+// 	if (selectedPokemonHeader) {
+// 	  selectedPokemonHeader.innerText = numSelectedText;
+// 	} else {
+// 	  const newHeader = document.createElement("h2");
+// 	  newHeader.classList.add("selected-pokemon-header");
+// 	  newHeader.innerText = numSelectedText;
+// 	  document.body.insertBefore(newHeader, document.querySelector(".pokemon-list"));
+// 	}
+//   }
+  
