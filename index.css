@@ -157,3 +157,29 @@ body {
 	padding: 0.5em;
 	margin: 2em 0em 1em 0em;
 }
+/* --------------------
+
+*/
+.up-btn, .down-btn {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 10px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+  }
+  
+  .up-btn:hover, .down-btn:hover {
+	background-color: #3e8e41;
+  }
+  
+  .up-btn:active, .down-btn:active {
+	background-color: #3e8e41;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+  }
+  

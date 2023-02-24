@@ -7,7 +7,7 @@ let popOverlayWhite = null;
 // ----------------------------
 
 let pokemonData = null; // objekt med { results }
-let selectedPokemon = null; // den valda pokemonnen
+// let selectedPokemon = null; // den valda pokemonnen
 let myTeam = []; // här lägger du till pokemons till laget
 
 myTeamBtn.addEventListener("click", () => {
@@ -24,6 +24,7 @@ choosePokemonBtn.addEventListener("click", async () => {
 	);
 });
 // -------------------
+
 
 
 
@@ -62,6 +63,20 @@ function createMyTeamPopOverlay() {
 	  newRemoveBtn.innerText = "Remove";
 	  newPokemonName.innerText = pokemon.name;
 	  newPokemonImg.src = pokemon.sprites;
+
+
+
+// --------------------
+const newUpBtn = document.createElement("button");
+newUpBtn.innerText = "Up";
+newUpBtn.classList.add("upBtn");
+
+const newDownBtn = document.createElement("button");
+newDownBtn.innerText = "Down";
+newDownBtn.classList.add("downBtn");
+
+// -----------------------
+
   
 	  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput);
 	  newPokemonImg.src = pokemon.sprites;
@@ -88,10 +103,42 @@ function createMyTeamPopOverlay() {
 		newPokemonCard.remove(); // Remove pokemon card from overlay
 	  });
   
-	  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newRemoveBtn); // Add new remove button to pokemon card
-	  popOverlayWhite.append(newPokemonCard);
-	});
-  
+
+
+	newUpBtn.addEventListener("click", (event) => {
+		event.stopPropagation();
+		if (index > 0) {
+		  // Move the pokemon card up in the array
+		  const temp = myTeam[index];
+		  myTeam[index] = myTeam[index - 1];
+		  myTeam[index - 1] = temp;
+		  
+		  // Move the pokemon card up in the DOM
+		  const prevPokemonCard = newPokemonCard.previousSibling;
+		  popOverlayWhite.insertBefore(newPokemonCard, prevPokemonCard);
+		}
+	  });
+	  
+	  newDownBtn.addEventListener("click", (event) => {
+		event.stopPropagation();
+		if (index < myTeam.length - 1) {
+		  // Move the pokemon card down in the array
+		  const temp = myTeam[index];
+		  myTeam[index] = myTeam[index + 1];
+		  myTeam[index + 1] = temp;
+	// --------------------   // Move the pokemon card down in the DOM
+	 const nextPokemonCard = newPokemonCard.nextSibling;
+	 popOverlayWhite.insertBefore(nextPokemonCard, newPokemonCard);
+   }
+ });
+ 
+ newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput, newUpBtn, newDownBtn, newRemoveBtn);
+ popOverlayWhite.append(newPokemonCard);
+
+
+
+
+	
 	popOverlayWhite.addEventListener("click", (event) => {
 	  event.stopPropagation();
 	});
@@ -100,11 +147,15 @@ function createMyTeamPopOverlay() {
 	  console.log("du klickade på den svarta overlayen");
 	  popOverlayMyTeam.remove();
 	});
-  };
-  
+ 
+  });
+
+}
+
+
+
 
   
-
 function addPokemonToTeam(pokemon) {
   if (myTeam.length >= 3) {
     console.log('You can only have 3 pokemon on your team!')
@@ -332,3 +383,43 @@ const selectBtn = document.querySelector("#selectBtn");
 // Någon idée för hur jag kan få rad 104 att fungera? 
 //När Jag är i "mitt team" så kan jag ej klicka på svarta overlayen för att stänga / måste ladda om 
 // När man laddar om försvinner de valda pokemonen. 
+
+
+
+
+// ERrOR meddelande... 
+
+// const maxPokemon = 3;
+// let selectedPokemon = [];
+
+// function handlePokemonSelection(event) {
+//   const pokemonCard = event.currentTarget;
+// //   const pokemonName = pokemonCard.querySelector('.pokemon-name').textContent;
+//   const pokemonIndex = parseInt(pokemonCard.dataset.index);
+
+//   // Check if the pokemon is already selected
+//   const pokemonIndexInSelection = selectedPokemon.indexOf(pokemonIndex);
+
+//   if (pokemonIndexInSelection !== -1) {
+//     // If it's already selected, remove it from the selection
+//     selectedPokemon.splice(pokemonIndexInSelection, 1);
+//     pokemonCard.classList.remove('selected');
+//   } else if (selectedPokemon.length < maxPokemon) {
+//     // If it's not selected and there's room for more, add it to the selection
+//     selectedPokemon.push(pokemonIndex);
+//     pokemonCard.classList.add('selected');
+//   }
+
+//   // Update the header with the number of selected Pokemon
+//   const myTeamHeader = document.querySelector('.myTeamHeader');
+//   myTeamHeader.textContent = `Mitt Team (${selectedPokemon.length}/3)`;
+
+//   // Check if more than 3 Pokemon are selected and display an error message
+//   const errorDiv = document.querySelector('.error');
+//   if (selectedPokemon.length > maxPokemon) {
+//     errorDiv.textContent = 'You can only choose up to 3 Pokemon.';
+//   } else {
+//     errorDiv.textContent = '';
+//   }
+//   createMyTeamPopOverlay() 
+// }
