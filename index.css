@@ -102,7 +102,7 @@ body {
 /* --------------MyTeamBtn---------------- */
 
 .popOverlay-choosePokemon,
-.PopOverlay-MyTeamBtn{
+.popOverlay-MyTeam{
 	background-color: rgba(0, 0, 0, 0.905);
 	height: 100vh;
 	width: 100vw;

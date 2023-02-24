@@ -28,83 +28,82 @@ choosePokemonBtn.addEventListener("click", async () => {
 
 
 function createMyTeamPopOverlay() {
-  let popOverlayMyTeamBtn = document.createElement("div")
-  let popOverlayWhite = document.createElement("div")
-  let myTeamHeader = document.createElement("h2")
-  myTeamHeader.classList.add("myTeamHeader")
-  myTeamHeader.innerText = "Mitt Team"
-  popOverlayMyTeamBtn.classList.add("PopOverlay-MyTeamBtn")
-  popOverlayWhite.classList.add("popOverlayWhite")
-
-  body.append(popOverlayMyTeamBtn)
-  popOverlayMyTeamBtn.append(popOverlayWhite)
-  popOverlayWhite.append(myTeamHeader)
-
-  myTeam.forEach((pokemon, index) => {
-      const newPokemonCard = document.createElement("div")
-      const newPokemonImg = document.createElement("img")
-      const newPokemonName = document.createElement("h6")
-
-      const newChangeNameBtn = document.createElement("button")
-      const newNameInput = document.createElement("input")
-      newChangeNameBtn.classList.add("changeNameBtn")
-      const newRemoveBtn = document.createElement("button")
-      newPokemonCard.classList.add("pokemon")
-      newRemoveBtn.classList.add("removeBtn")
-
-      newChangeNameBtn.innerText = "Rename"
-      newNameInput.classList.add("nameInput")
-      newNameInput.type = "text"
-      newNameInput.value = pokemon.name
-      newNameInput.style.display = "none"
-
-   
-      newRemoveBtn.innerText = "Remove"
-      newPokemonName.innerText = pokemon.name;
-      newPokemonImg.src = pokemon.sprites
-
-
-      newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput);
-      newPokemonImg.src = pokemon.sprites
-      newPokemonName.innerText = pokemon.name;
-
-      newChangeNameBtn.addEventListener("click", (event) => {
-          event.stopPropagation();
-          newPokemonName.style.display = "none"
-          newChangeNameBtn.style.display = "none"
-          newNameInput.style.display = "inline-block"
-          newNameInput.focus();
-      });
-
-      newNameInput.addEventListener("blur", (event) => {
-        event.stopPropagation();
-          newPokemonName.innerText = newNameInput.value
-          newPokemonName.style.display = "inline-block"
-          newChangeNameBtn.style.display = "inline-block"
-          newNameInput.style.display = "none"
-      });
-
-      newRemoveBtn.addEventListener("click", () => {
-        myTeam.splice(index, 1) // Remove pokemon from array
-        newPokemonCard.remove()// Remove pokemon card from overlay
-      });
-
-      
-      newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newRemoveBtn); // Add new remove button to pokemon card
-      popOverlayWhite.append(newPokemonCard)
-    });
+	let popOverlayMyTeam = document.createElement("div");
+	let popOverlayWhite = document.createElement("div");
+	let myTeamHeader = document.createElement("h2");
+	myTeamHeader.classList.add("myTeamHeader");
+	myTeamHeader.innerText = "Mitt Team";
+	popOverlayMyTeam.classList.add("popOverlay-MyTeam");
+	popOverlayWhite.classList.add("popOverlayWhite");
+  
+	body.append(popOverlayMyTeam);
+	popOverlayMyTeam.append(popOverlayWhite);
+	popOverlayWhite.append(myTeamHeader);
+  
+	// For each pokemon that are selected. Create new card/button and move to myTeam.
+	myTeam.forEach((pokemon, index) => {
+	  const newPokemonCard = document.createElement("div");
+	  const newPokemonImg = document.createElement("img");
+	  const newPokemonName = document.createElement("h6");
+  
+	  const newChangeNameBtn = document.createElement("button");
+	  const newNameInput = document.createElement("input");
+	  newChangeNameBtn.classList.add("changeNameBtn");
+	  const newRemoveBtn = document.createElement("button");
+	  newPokemonCard.classList.add("pokemon");
+	  newRemoveBtn.classList.add("removeBtn");
+  
+	  newChangeNameBtn.innerText = "Rename";
+	  newNameInput.classList.add("nameInput");
+	  newNameInput.type = "text";
+	  newNameInput.value = pokemon.name;
+	  newNameInput.style.display = "none";
+  
+	  newRemoveBtn.innerText = "Remove";
+	  newPokemonName.innerText = pokemon.name;
+	  newPokemonImg.src = pokemon.sprites;
+  
+	  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput);
+	  newPokemonImg.src = pokemon.sprites;
+	  newPokemonName.innerText = pokemon.name;
+  
+	  newChangeNameBtn.addEventListener("click", (event) => {
+		event.stopPropagation();
+		newPokemonName.style.display = "none";
+		newChangeNameBtn.style.display = "none";
+		newNameInput.style.display = "inline-block";
+		newNameInput.focus();
+	  });
+  
+	  newNameInput.addEventListener("blur", (event) => {
+		event.stopPropagation();
+		newPokemonName.innerText = newNameInput.value;
+		newPokemonName.style.display = "inline-block";
+		newChangeNameBtn.style.display = "inline-block";
+		newNameInput.style.display = "none";
+	  });
+  
+	  newRemoveBtn.addEventListener("click", () => {
+		myTeam.splice(index, 1); // Remove pokemon from array
+		newPokemonCard.remove(); // Remove pokemon card from overlay
+	  });
+  
+	  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newRemoveBtn); // Add new remove button to pokemon card
+	  popOverlayWhite.append(newPokemonCard);
+	});
+  
+	popOverlayWhite.addEventListener("click", (event) => {
+	  event.stopPropagation();
+	});
+  
+	popOverlayMyTeam.addEventListener("click", () => {
+	  console.log("du klickade på den svarta overlayen");
+	  popOverlayMyTeam.remove();
+	});
   };
-  popOverlayWhite.addEventListener("click", (event) => {
-      event.stopPropagation();
-  
-  });
-  popOverlayMyTeamBtn.addEventListener("click", () => {
-    popOverlayMyTeamBtn.remove();
-  
-  });
-
   
 
+  
 
 function addPokemonToTeam(pokemon) {
   if (myTeam.length >= 3) {
@@ -115,11 +114,6 @@ function addPokemonToTeam(pokemon) {
   myTeam.push(pokemon);
 
 }
-
-
-
-
-
 
 
 
