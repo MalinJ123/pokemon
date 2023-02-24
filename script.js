@@ -12,7 +12,11 @@ let myTeam = []; // här lägger du till pokemons till laget
 
 myTeamBtn.addEventListener("click", () => {
 	createMyTeamPopOverlay();
+	
 });
+
+
+
 // --------------------
 choosePokemonBtn.addEventListener("click", async () => {
 	// Hämta all information
@@ -157,7 +161,7 @@ function addPokemonToTeam(pokemon) {
 
 async function getPokemonData() {
 	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
-	const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
+	const url = "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0";
 
 	console.log("Nu hämtar Jag data i från API");
 	const response = await fetch(url);
