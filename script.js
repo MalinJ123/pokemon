@@ -64,13 +64,13 @@ function createMyTeamPopOverlay() {
 	  newPokemonName.innerText = pokemon.name;
 	  newPokemonImg.src = pokemon.sprites;
 
-const newUpBtn = document.createElement("button");
-newUpBtn.innerText = "Up";
-newUpBtn.classList.add("upBtn");
+		const newUpBtn = document.createElement("button");
+		newUpBtn.innerText = "Up";
+		newUpBtn.classList.add("upBtn");
 
-const newDownBtn = document.createElement("button");
-newDownBtn.innerText = "Down";
-newDownBtn.classList.add("downBtn");
+		const newDownBtn = document.createElement("button");
+		newDownBtn.innerText = "Down";
+		newDownBtn.classList.add("downBtn");
 
 	  newPokemonCard.append(newPokemonName, newPokemonImg, newChangeNameBtn, newNameInput);
 	  newPokemonImg.src = pokemon.sprites;
@@ -149,23 +149,26 @@ newDownBtn.classList.add("downBtn");
   
 function addPokemonToTeam(pokemon) {
 	console.log("Test");
-
+  
 	if (myTeam.length <= 2) {
-	myTeam.push(pokemon);
-}
-else if(myTeam.length > 2){
-	//Lägg till pop up som talar om att personen har redan 3 pokemons i teamet
-	//Anropa funktion som har overlay
-	console.log('You can only have 3 pokemon on your team!')
-}
-    
-    return;
- 
+	  myTeam.push(pokemon);
+	} else if (myTeam.length > 2) {
+	  // create popup div element
+	  const popup = document.createElement('div');
+	  popup.classList.add('popup');
+	  popup.textContent = 'You can only have 3 pokemon on your team!';
   
+	  // append popup to body
+	  document.body.appendChild(popup);
   
-
-}
-
+	  // remove popup after 3 seconds
+	  setTimeout(() => {
+		popup.remove();
+	  }, 3000);
+	}
+  
+	return;
+  }
 
 
 async function getPokemonData() {
@@ -376,128 +379,15 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 			console.log("Anropar addPokemon")
 			addPokemonToTeam(pokemon)
 			console.log("POKEMON: " + pokemon)
+
 		});
 	});
-} //pokemonCardDiv
-
-
-// const selectBtn = document.querySelector("#selectBtn");
+}
 
 
 
-
-
-
-
-// ERrOR meddelande... 
-
-// const maxPokemon = 3;
-// let selectedPokemon = [];
-
-// function handlePokemonSelection(event) {
-//   const pokemonCard = event.currentTarget;
-// //   const pokemonName = pokemonCard.querySelector('.pokemon-name').textContent;
-//   const pokemonIndex = parseInt(pokemonCard.dataset.index);
-
-//   // Check if the pokemon is already selected
-//   const pokemonIndexInSelection = selectedPokemon.indexOf(pokemonIndex);
-
-//   if (pokemonIndexInSelection !== -1) {
-//     // If it's already selected, remove it from the selection
-//     selectedPokemon.splice(pokemonIndexInSelection, 1);
-//     pokemonCard.classList.remove('selected');
-//   } else if (selectedPokemon.length < maxPokemon) {
-//     // If it's not selected and there's room for more, add it to the selection
-//     selectedPokemon.push(pokemonIndex);
-//     pokemonCard.classList.add('selected');
-//   }
-
-//   // Update the header with the number of selected Pokemon
-//   const myTeamHeader = document.querySelector('.myTeamHeader');
-//   myTeamHeader.textContent = `Mitt Team (${selectedPokemon.length}/3)`;
-
-//   // Check if more than 3 Pokemon are selected and display an error message
-//   const errorDiv = document.querySelector('.error');
-//   if (selectedPokemon.length > maxPokemon) {
-//     errorDiv.textContent = 'You can only choose up to 3 Pokemon.';
-//   } else {
-//     errorDiv.textContent = '';
-//   }
-//   createMyTeamPopOverlay() 
-// }
-
-
-
-
-
-
-
-
-// function updateHeader() {
-// 	// Get all checkboxes
-// 	const checkboxes = document.getElementsByName('pokemon');
-	
-// 	// Count how many are checked
-// 	let checkedCount = 0;
-// 	for (let i = 0; i < checkboxes.length; i++) {
-// 	  if (checkboxes[i].checked) {
-// 		checkedCount++;
-// 	  }
-// 	}
-	
-// 	// Update header text
-// 	const header = document.getElementById('header');
-// 	if (checkedCount === 0) {
-// 	  header.textContent = 'Select your team of 3 Pokemon';
-// 	} else if (checkedCount === 1) {
-// 	  header.textContent = 'You have selected 1 Pokemon';
-// 	} else if (checkedCount === 2) {
-// 	  header.textContent = 'You have selected 2 Pokemon';
-// 	} else if (checkedCount === 3) {
-// 	  header.textContent = 'You have selected 3 Pokemon';
-// 	} else {
-// 	  header.textContent = 'You have selected more than 3 Pokemon';
-// 	  // Display overlay
-// 	  const overlay = document.getElementById('overlay');
-// 	  overlay.style.display = 'block';
-// 	}
-//   }
-
-
-
-
-
-  
-// function selectedPokemon(event) {
-// 	const pokemonCard = event.target.closest(".pokemon-card");
-// 	if (!pokemonCard) {
-// 	  return;
-// 	}
-  
-// 	const pokemonId = pokemonCard.dataset.id;
-// 	const pokemonIndex = selectedPokemon.indexOf(pokemonId);
-  
-// 	if (pokemonIndex === -1 && selectedPokemon.length < 3) {
-// 	  // Add the Pokemon to the selected list
-// 	  selectedPokemon.push(pokemonId);
-// 	  pokemonCard.classList.add("selected");
-// 	} else if (pokemonIndex !== -1) {
-// 	  // Remove the Pokemon from the selected list
-// 	  selectedPokemon.splice(pokemonIndex, 1);
-// 	  pokemonCard.classList.remove("selected");
-// 	}
-  
-// 	// Update the number of selected Pokemon
-// 	const numSelected = selectedPokemon.length;
-// 	const numSelectedText = `Selected Pokemon: ${numSelected}/3`;
-// 	const selectedPokemonHeader = document.querySelector(".selected-pokemon-header");
-// 	if (selectedPokemonHeader) {
-// 	  selectedPokemonHeader.innerText = numSelectedText;
-// 	} else {
-// 	  const newHeader = document.createElement("h2");
-// 	  newHeader.classList.add("selected-pokemon-header");
-// 	  newHeader.innerText = numSelectedText;
-// 	  document.body.insertBefore(newHeader, document.querySelector(".pokemon-list"));
-// 	}
-//   }
-  
+// const toggleTipText = document.querySelector('span')
+		// 	toggleTipText.classList.add('toggleTipText')
+		// 	toggleTipText.innerText = 'Du kan inte ha mer än tre pokemon i ditt team'
+		// 	const overlayContent = createChoosePokemonOverlay.querySelector('.overlay-content');
+		// 	overlayContent.appendChild(toggleTipText);
