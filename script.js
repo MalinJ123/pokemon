@@ -148,12 +148,21 @@ newDownBtn.classList.add("downBtn");
 
   
 function addPokemonToTeam(pokemon) {
-  if (myTeam.length >= 3) {
-    console.log('You can only have 3 pokemon on your team!')
+	console.log("Test");
+
+	if (myTeam.length <= 2) {
+	myTeam.push(pokemon);
+}
+else if(myTeam.length > 2){
+	//Lägg till pop up som talar om att personen har redan 3 pokemons i teamet
+	//Anropa funktion som har overlay
+	console.log('You can only have 3 pokemon on your team!')
+}
+    
     return;
-  }
+ 
   
-  myTeam.push(pokemon);
+  
 
 }
 
@@ -247,6 +256,8 @@ function createCardSelectBtn(cardDiv) {
 	selectBtn.addEventListener("click", () => {
 		popOverlayWhite.appendChild(cardDiv);
 		cardDiv.style.display = "block";
+		// addPokemonToTeam(pokemon)
+		// console.log(pokemon)
 	});
 
 	return selectBtn;
@@ -361,7 +372,10 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
     // Den här Click funktionen fungerar. 
 		selectBtn.addEventListener("click", () => {
 			console.log("Du klickade på select knappen ", pokemon);
-			myTeam.push(pokemon);
+			//myTeam.push(pokemon);
+			console.log("Anropar addPokemon")
+			addPokemonToTeam(pokemon)
+			console.log("POKEMON: " + pokemon)
 		});
 	});
 } //pokemonCardDiv
