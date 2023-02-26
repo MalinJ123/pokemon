@@ -1,100 +1,110 @@
 /* font-family: 'Bubblegum Sans', cursive; */
 
-* {	box-sizing: border-box;
+* {
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 	font-family: 'Bubblegum Sans', cursive;
 }
 
 body {
-	background-color: rgb(0, 0, 0);
+	background-color:rgba(0, 0, 0, 1);
 }
 
 /* --------------START PAGE---------------- */
-.start-page{
+.start-page {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-}
-.container{
-display: flex;
-flex-direction: column;
-width: 10em;
-height: 4em;
+	height: auto;
 }
 
-.pokemon-logga{
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 10em;
+	height: 4em;
+}
+
+.pokemon-logga {
 	width: fit-content;
 	height: 5em;
 	margin: 2em 0 4em;
 }
 
 #myTeam-btn,
-#choosePokemon-btn{
+#choosePokemon-btn {
 	border-radius: 10px;
 	padding: 0.4em 1.2em;
 	font-weight: bold;
 	margin-bottom: 0.5em;
 }
+
 #myTeam-btn:hover,
-#choosePokemon-btn:hover{
+#choosePokemon-btn:hover {
 	background-color: rgb(104, 58, 146);
 	color: white;
 	font-size: 15px;
 }
-.background-pokemon-pic{
+
+.background-pokemon-pic {
 	margin-top: 3em;
 }
 
 @media (min-width: 430px) {
-	.background-pokemon-pic{
-	margin: 10em 0 4em ;
-	width:fit-content;
-	height: 15em;
+	.background-pokemon-pic {
+		margin: 10em 0 4em;
+		width: fit-content;
+		height: 15em;
 	}
-	
-.pokemon-logga{
-	width: fit-content;
-	height: 7em;
-	margin: 2em 0 7em;
-}
-.popOverlayWhite-choosePokemon,
-.popOverlayWhite,
-{
-	position: fixed;
-	/* top: 7em; */
+
+	.pokemon-logga {
+		width: fit-content;
+		height: 7em;
+		margin: 2em 0 7em;
+	}
+
+	.popOverlayWhite-choosePokemon,
+	.popOverlayWhite {
+		position: fixed;
+		/* top: 7em; */
 	}
 }
+
 .choose-header,
-.myTeamHeader{
+.myTeamHeader {
 	visibility: hidden;
 	font-size: 1px;
 }
 
 @media (min-width: 600px) {
-	.background-pokemon-pic{
-	margin: 10em 0 4em ;
-	width:fit-content;
-	height: 20em;
+	.background-pokemon-pic {
+		margin: 10em 0 4em;
+		width: fit-content;
+		height: 20em;
 	}
 }
+
 .popOverlay-choosePokemon,
-.popOverlay-MyTeam{
+.popOverlay-MyTeam {
 	background-color: rgba(0, 0, 0, 0.905);
-	height: 100vh;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 4em 4em;
 }
 
 .popOverlayWhite-choosePokemon,
-.popOverlayWhite{
+.popOverlayWhite {
+	position: absolute;
+	top: 0px;
 	background-color: #ffffffe8;
 	color: rgb(0, 0, 0);
 	width: 80%;
@@ -102,15 +112,14 @@ height: 4em;
 	text-align: center;
 	display: flex;
 	align-items: center;
-	justify-content: center; 
+	justify-content: center;
 	flex-wrap: wrap;
-	margin-top: 8em;
+	margin: 8em 4em 1em 4em;
 }
 
 /* ------------------------------ Choose Team -------------- */
 .pokemon,
-.myChooseteam-card
-{
+.myChooseteam-card {
 	border: 2px solid rgba(0, 0, 0, 0.494);
 	display: flex;
 	flex-direction: column;
@@ -119,43 +128,46 @@ height: 4em;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.input{
-	border: 2px dotted black; 
+.input {
+	border: 2px dotted black;
 	padding: 0.5em;
 	margin: 2em 0em 1em 0em;
 }
 
 
-  
-  .upBtn:hover,
-  .downBtn:hover,
-  .selectBtn:hover, 
-  .removeBtn:hover,
-  .nameInput:hover,
-  .changeNameBtn:hover {    
-	background-image: linear-gradient(to right, #ff00cc 0%, #333399  51%, #ff00cc  100%);
+
+.upBtn:hover,
+.downBtn:hover,
+.selectBtn:hover,
+.removeBtn:hover,
+.nameInput:hover,
+.changeNameBtn:hover {
+	background-image: linear-gradient(to right, #ff00cc 0%, #333399 51%, #ff00cc 100%);
 	margin: 3px;
-	background-position: right center; /* change the direction of the change here */
+	background-position: right center;
+	/* change the direction of the change here */
 	color: #fff;
 	text-decoration: none;
-	
-  }  
-  .upBtn,
-  .downBtn,
-  .selectBtn, 
-  .removeBtn,
-  .nameInput,
-  .changeNameBtn {
+
+}
+
+.upBtn,
+.downBtn,
+.selectBtn,
+.removeBtn,
+.nameInput,
+.changeNameBtn {
 	cursor: pointer;
 	/* background-color: rgb(123, 75, 167); */
 	/* color: white; */
-	background-image: linear-gradient(to right, #834d9b 0%, #d04ed6  51%, #834d9b  100%);
+	background-image: linear-gradient(to right, #834d9b 0%, #d04ed6 51%, #834d9b 100%);
 	transition: 0.2s;
-	color: white;            
+	color: white;
 	box-shadow: 0 0 20px #eee;
-  } 
+}
+
 /* If you have more than 3 pokemon this will show  */
-  .popup {
+.popup {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -165,4 +177,4 @@ height: 4em;
 	padding: 10px;
 	font-size: 18px;
 	border-radius: 5px;
-  }
+}
