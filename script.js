@@ -14,7 +14,6 @@ myTeamBtn.addEventListener("click", () => {
 	createMyTeamPopOverlay();
 });
 
-// --------------------
 choosePokemonBtn.addEventListener("click", async () => {
 	// Hämta all information
 	pokemonData = await getPokemonData();
@@ -26,14 +25,8 @@ choosePokemonBtn.addEventListener("click", async () => {
 	);
 });
 
-// // för varje abilities 
-// pokemon.abilities.forEach(pokemon => {
-// 	let newAbilities = document.createElement('legend')
 
-// 	newAbilities.textContent = pokemon.ability.name
-// 	cardDiv.append(newAbilities)
-// });
-
+// Det här händer i MITT TEAM POKEMON CARDSEN
 function createMyTeamPopOverlay() {
 	// Only create the overlay if there are pokémon in the team
 	if (myTeam.length > 0) {
@@ -64,6 +57,7 @@ function createMyTeamPopOverlay() {
 			newRemoveBtn.classList.add("removeBtn");
 			newAbility.classList.add("ability");
 
+			
 			newChangeNameBtn.innerText = "Rename";
 			newNameInput.classList.add("nameInput");
 			newNameInput.type = "text";
@@ -188,10 +182,61 @@ function createMyTeamPopOverlay() {
 	}
 }
 
-// ---------------
+// DEN HÄR FUNKTIONEN HÄMTAR DATA IFRÅN API:ET
+async function getPokemonData() {
+	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
+	const url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+
+	console.log("Nu hämtar Jag data i från API");
+	const response = await fetch(url);
+	const data = await response.json();
+	//  datan är ett objekt med results
+	console.log("Nu VÄNTAR Jag på data i från API");
+
+	console.log(" Nu borde jag ha fått datan och den ser ut såhär  :", data);
+
+	// Problem: forEach väntar inte tills alla funktioner är färdiga
+	let numberComplete = 0;
+	data.results.forEach(async (pokemon) => {
+		const pokemonUrl = pokemon.url;
+		const pokemonResponse = await fetch(pokemonUrl);
+		let responseData = await pokemonResponse.json();
+
+		// Om du vill ha shiny byt på två ställen i koden
+		// pokemon.sprites = responseData.sprites.front_shiny;
+		pokemon.sprites = responseData.sprites.front_default;
+
+		pokemon.abilities = ''
+		
+		responseData.abilities.forEach(object => {
+			// console.log('Object is:', object)
+			pokemon.abilities += object.ability.name
+		
+		
+		});
+
+
+		// pokemon.sprites är en bildlänk
+		numberComplete++;
+		if (numberComplete === data.results.length) {
+			const popOverlayWhiteChoosePokemon = createChoosePokemonOverlay();
+
+			renderFilteredPokemonData(
+				data.results,
+				popOverlayWhiteChoosePokemon
+			);
+		}
+	});
+
+	return data;
+}
 
 
 
+
+
+
+// DEN HÄR FUNKTIONEN TALAR OM ATT DU BARA KAN VÄLJA ANTAL MÅNGA i TEAM	OCH SOM RESERV
 function addPokemonToTeam(pokemon) {
 	if (myTeam.length <= 9) {
 		myTeam.push(pokemon);
@@ -228,87 +273,92 @@ function addPokemonToTeam(pokemon) {
 	return;
 }
 
+// NÅGOT MED SELECTED KNAPPEN
+function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
+	// Clear the existing cards
+	popOverlayWhiteChoose
+		.querySelectorAll(".myChooseteam-card")
+		.forEach((card) => card.remove());
 
+	if (pokemonData) {
+		pokemonCardDiv(pokemonData, popOverlayWhiteChoose);
+	} else if (pokemonData) {
+		pokemonData.forEach((pokemon) => {
+			cardDiv.addEventListener("click", () => {
+				console.log("du klickade på en pokemon");
+				selectedPokemon = pokemon;
+			});
 
-// // //   inte mer än 3 i myteam
-// function addPokemonToTeam(pokemon) {
-// 	console.log("Test");
-
-// 	if (myTeam.length <= 8) {
-// 		myTeam.push(pokemon);
-// 	} else if (myTeam.length > 8) {
-// 		// create popup div element
-// 		const popup = document.createElement("div");
-// 		popup.classList.add("popup");
-// 		popup.textContent = "You can only have 6 reserve pokemon !";
-	
-	
-
-// 		// append popup to body
-// 		document.body.appendChild(popup);
-
-// 		// remove popup after 3 seconds
-// 		setTimeout(() => {
-// 			popup.remove();
-// 		}, 3000);
-// 	}
-
-// 	return;
-// }
-
-async function getPokemonData() {
-	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
-	const url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
-
-	console.log("Nu hämtar Jag data i från API");
-	const response = await fetch(url);
-	const data = await response.json();
-	//  datan är ett objekt med results
-	console.log("Nu VÄNTAR Jag på data i från API");
-
-	console.log(" Nu borde jag ha fått datan och den ser ut såhär  :", data);
-
-	// Problem: forEach väntar inte tills alla funktioner är färdiga
-	let numberComplete = 0;
-	data.results.forEach(async (pokemon) => {
-		const pokemonUrl = pokemon.url;
-		const pokemonResponse = await fetch(pokemonUrl);
-		let responseData = await pokemonResponse.json();
-
-		// Om du vill ha shiny byt på två ställen i koden
-		// pokemon.sprites = responseData.sprites.front_shiny;
-		pokemon.sprites = responseData.sprites.front_default;
-
-		// för varje ability
-		// console.log(
-		// 	"Abilities för varje pokemon. ",
-		// 	pokemon,
-		// 	responseData.abilities
-		// );
-		pokemon.abilities = ''
-		responseData.abilities.forEach(object => {
-			console.log('Object is:', object)
-			// let newAbility = document.createElement('legend')
-			// newAbility.textContent = pokemon.ability.name
-			// document.body.append(newAbility)
-			pokemon.abilities += object.ability.name
+			createCardSelectBtn(cardDiv);
 		});
+	}
+}
 
-
-		// pokemon.sprites är en bildlänk
-		numberComplete++;
-		if (numberComplete === data.results.length) {
-			const popOverlayWhiteChoosePokemon = createChoosePokemonOverlay();
-
-			renderFilteredPokemonData(
-				data.results,
-				popOverlayWhiteChoosePokemon
-			);
-		}
+// // HÄR SKAPAS ELEMENTEN I CHOOSEN OCH I VARJE ELEMENT FINNS EN SELECTBUTTON
+function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
+	// Detta görs en gång
+	console.log("pokemonCardDiv: pokemonData är:", pokemonData);
+	const inputElement = popOverlayWhiteChoose.querySelector(".input");
+	//  console.log('Finns det någon input? ', inputElement)
+	inputElement.addEventListener("input", () => {
+		const inputValue = inputElement.value.toLowerCase();
+		const filteredPokemonData = pokemonData.filter((pokemon) =>
+			pokemon.name.includes(inputValue)
+		);
+		renderFilteredPokemonData(filteredPokemonData, popOverlayWhiteChoose);
 	});
 
-	return data;
+	pokemonData.forEach((pokemon) => {
+		// Detta görs flera gånger (1 per pokemon)
+		// ----------------------------- The search btn in choosePokemon Overlayen
+
+		let cardDiv = document.createElement("div");
+		let cardImg = document.createElement("img");
+		let name = document.createElement("h5");
+		let ability = document.createElement("h6");
+
+		let selectBtn = document.createElement("button");
+
+		cardDiv.classList.add("myChooseteam-card");
+		cardImg.classList.add("myChooseteam-image");
+		name.classList.add("pokemonNametag");
+		selectBtn.classList.add("selectBtn");
+		ability.classList.add("ability");
+		selectBtn.textContent = "Select";
+
+	// console.log('detta är vad pokemon ability är ', pokemon.ability)
+		ability.innerText = pokemon.abilities;
+		// ability.innerText = pokemon.abilities.split(", ");
+		// const abilityNames = pokemon.abilities.map((ability) => ability.ability.name);
+		name.innerText = pokemon.name;
+		cardImg.src = pokemon.sprites;
+		
+		popOverlayWhiteChoose.append(cardDiv);
+		cardDiv.append(name);
+		cardDiv.append(cardImg);
+		cardDiv.append(ability);
+		cardDiv.append(selectBtn);
+
+
+		// Den här Click funktionen fungerar.
+		selectBtn.addEventListener("click", () => {
+			console.log("Du klickade på select knappen ", pokemon);
+			//myTeam.push(pokemon);
+			console.log("Anropar addPokemon");
+			addPokemonToTeam(pokemon);
+			console.log("POKEMON: " + pokemon);
+		});
+	});
 }
+
+  
+
+
+
+
+
+
+
 // Returnerar det vita elementet som är i mitten av overlayen
 function createChoosePokemonOverlay() {
 	let popOverlayChoosePokemon = document.createElement("div");
@@ -367,131 +417,49 @@ function createCardSelectBtn(cardDiv) {
 	return selectBtn;
 }
 
-function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
-	if (pokemonData) {
-		let filteredPokemon = pokemonData;
-		const inputElement = popOverlayWhiteChoose.querySelector(".input");
-		inputElement.addEventListener("input", () => {
-			const inputValue = inputElement.value.toLowerCase();
-			filteredPokemon = pokemonData.filter((pokemon) =>
-				pokemon.name.includes(inputValue)
-			);
-			/*
-			renderFilteredPokemonData(
-				filteredPokemonData,
-				popOverlayWhiteChoose
-			);
-			*/
-		});
+// VERKAR EJ BEHÖVA RENDER POKEMON DATA 
+// function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
+// 	if (pokemonData) {
+// 		let filteredPokemon = pokemonData;
+// 		const inputElement = popOverlayWhiteChoose.querySelector(".input");
+// 		inputElement.addEventListener("input", () => {
+// 			const inputValue = inputElement.value.toLowerCase();
+// 			filteredPokemon = pokemonData.filter((pokemon) =>
+// 				pokemon.name.includes(inputValue)
+// 			);
+		
+// 		});
 
-		filteredPokemon.forEach((pokemon) => {
-			// -----------------------------Visar pokemon lista
-			let cardDiv = document.createElement("div");
-			let cardImg = document.createElement("img");
-			let name = document.createElement("h4");
-			let ability = document.createElement("h6");
+// 		filteredPokemon.forEach((pokemon) => {
+// 			// -----------------------------Visar pokemon lista
+// 			let cardDiv = document.createElement("div");
+// 			let cardImg = document.createElement("img");
+// 			let name = document.createElement("h4");
+// 			let ability = document.createElement("h6");
 
-			let selectBtn = document.createElement("button");
+// 			let selectBtn = document.createElement("button");
 
-			cardDiv.classList.add("myChooseteam-card");
-			cardImg.classList.add("myChooseteam-image");
-			name.classList.add("pokemonNametag");
-			ability.classList.add("ability");
-			selectBtn.classList.add("selectBtn");
-			selectBtn.textContent = "Select";
+// 			cardDiv.classList.add("myChooseteam-card");
+// 			cardImg.classList.add("myChooseteam-image");
+// 			name.classList.add("pokemonNametag");
+// 			ability.classList.add("ability");
+// 			selectBtn.classList.add("selectBtn");
+// 			selectBtn.textContent = "Select";
 
-			cardImg.src = pokemon.sprites;
-			// ability = responseData.abilities;
-			// ability.innerText = 'test'
+// 			cardImg.src = pokemon.sprites;
+// 			// ability = responseData.abilities;
+// 			// ability.innerText = 'test'
+// 			ability.innerText = pokemon.abilities.split(", ");
 
-			name.innerText = pokemon.name;
-			// pokemon.sprites = responseData.sprites.front_shiny;
-			pokemon.sprites = responseData.sprites.front_default;
+// 			name.innerText = pokemon.name;
+// 			// pokemon.sprites = responseData.sprites.front_shiny;
+// 			pokemon.sprites = responseData.sprites.front_default;
 
-			// console.log("Här är någoting med bilden ", pokemon.sprites);
-
-			popOverlayWhiteChoose.append(cardDiv);
-			cardDiv.append(name);
-			cardDiv.append(cardImg);
-			cardDiv.append(ability);
-			cardDiv.append(selectBtn);
-		});
-	}
-}
-
-function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
-	// Clear the existing cards
-	popOverlayWhiteChoose
-		.querySelectorAll(".myChooseteam-card")
-		.forEach((card) => card.remove());
-
-	if (pokemonData) {
-		pokemonCardDiv(pokemonData, popOverlayWhiteChoose);
-	} else if (pokemonData) {
-		pokemonData.forEach((pokemon) => {
-			cardDiv.addEventListener("click", () => {
-				console.log("du klickade på en pokemon");
-				selectedPokemon = pokemon;
-			});
-
-			createCardSelectBtn(cardDiv);
-		});
-	}
-}
-
-function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
-	// Detta görs en gång
-	console.log("pokemonCardDiv: pokemonData är:", pokemonData);
-	const inputElement = popOverlayWhiteChoose.querySelector(".input");
-	//  console.log('Finns det någon input? ', inputElement)
-	inputElement.addEventListener("input", () => {
-		const inputValue = inputElement.value.toLowerCase();
-		const filteredPokemonData = pokemonData.filter((pokemon) =>
-			pokemon.name.includes(inputValue)
-		);
-		renderFilteredPokemonData(filteredPokemonData, popOverlayWhiteChoose);
-	});
-
-	pokemonData.forEach((pokemon) => {
-		// Detta görs flera gånger (1 per pokemon)
-		// ----------------------------- The search btn in choosePokemon Overlayen
-
-		let cardDiv = document.createElement("div");
-		let cardImg = document.createElement("img");
-		let name = document.createElement("h5");
-		let ability = document.createElement("h6");
-
-		let selectBtn = document.createElement("button");
-
-		cardDiv.classList.add("myChooseteam-card");
-		cardImg.classList.add("myChooseteam-image");
-		name.classList.add("pokemonNametag");
-		selectBtn.classList.add("selectBtn");
-		ability.classList.add("ability");
-		selectBtn.textContent = "Select";
-
-		// console.log('detta är vad pokemon ability är ', pokemon.ability)
-		ability.innerText = pokemon.abilities;
-		name.innerText = pokemon.name;
-		cardImg.src = pokemon.sprites;
-		// console.log('Kontrollera vad en pokemon är: ', pokemon)
-		// console.log("Kontrollera renderfunktionen:", name.innerText, cardImg.src);
-
-		popOverlayWhiteChoose.append(cardDiv);
-		cardDiv.append(name);
-		cardDiv.append(cardImg);
-		cardDiv.append(ability);
-		cardDiv.append(selectBtn);
-
-		// --------------------------------------------------------------------------------------------------
-
-		// Den här Click funktionen fungerar.
-		selectBtn.addEventListener("click", () => {
-			console.log("Du klickade på select knappen ", pokemon);
-			//myTeam.push(pokemon);
-			console.log("Anropar addPokemon");
-			addPokemonToTeam(pokemon);
-			console.log("POKEMON: " + pokemon);
-		});
-	});
-}
+// 			popOverlayWhiteChoose.append(cardDiv);
+// 			cardDiv.append(name);
+// 			cardDiv.append(cardImg);
+// 			// cardDiv.append(ability);
+// 			cardDiv.append(selectBtn);
+// 		});
+// 	}
+// }

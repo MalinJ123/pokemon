@@ -148,6 +148,21 @@ h2 {
 
  }
 
+ /* .myChooseteam-card > h6 {
+	display: flex;
+	flex-direction: column;
+	font-size: 10px;
+	margin:10px;
+	display: block;
+
+ } */
+
+ .ability {
+	display: block;
+	/* margin-bottom: 10px;  */
+	
+  } 
+
 .myChooseteam-card {
 	border: 2px solid rgba(0, 0, 0, 0.494);
 	display: flex;
