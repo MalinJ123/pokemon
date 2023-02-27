@@ -48,16 +48,20 @@ function createMyTeamPopOverlay() {
 			const newPokemonImg = document.createElement("img");
 			const newPokemonName = document.createElement("h4");
 			const newAbility = document.createElement("h6");
-
+			// --------------------
+			const newAbility2 = document.createElement("h6");
+// ----------------------------------
 			const newChangeNameBtn = document.createElement("button");
 			const newNameInput = document.createElement("input");
 			newChangeNameBtn.classList.add("changeNameBtn");
 			const newRemoveBtn = document.createElement("button");
 			newPokemonCard.classList.add("pokemon");
 			newRemoveBtn.classList.add("removeBtn");
+			// 
 			newAbility.classList.add("ability");
+			newAbility2.classList.add("ability");
+			// 
 
-			
 			newChangeNameBtn.innerText = "Rename";
 			newNameInput.classList.add("nameInput");
 			newNameInput.type = "text";
@@ -80,6 +84,7 @@ function createMyTeamPopOverlay() {
 				newPokemonName,
 				newPokemonImg,
 				newAbility,
+				newAbility2,
 				newChangeNameBtn,
 				newNameInput
 			);
@@ -185,7 +190,7 @@ function createMyTeamPopOverlay() {
 // DEN HÄR FUNKTIONEN HÄMTAR DATA IFRÅN API:ET
 async function getPokemonData() {
 	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
-	const url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+	const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
 
 	console.log("Nu hämtar Jag data i från API");
 	const response = await fetch(url);
@@ -203,15 +208,14 @@ async function getPokemonData() {
 		let responseData = await pokemonResponse.json();
 
 		// Om du vill ha shiny byt på två ställen i koden
-		// pokemon.sprites = responseData.sprites.front_shiny;
-		pokemon.sprites = responseData.sprites.front_default;
+		pokemon.sprites = responseData.sprites.front_shiny;
+		// pokemon.sprites = responseData.sprites.front_default;
 
 		pokemon.abilities = ''
 		
 		responseData.abilities.forEach(object => {
 			// console.log('Object is:', object)
 			pokemon.abilities += object.ability.name
-		
 		
 		});
 
@@ -297,7 +301,7 @@ function renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose) {
 // // HÄR SKAPAS ELEMENTEN I CHOOSEN OCH I VARJE ELEMENT FINNS EN SELECTBUTTON
 function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 	// Detta görs en gång
-	console.log("pokemonCardDiv: pokemonData är:", pokemonData);
+	// console.log("pokemonCardDiv: pokemonData är:", pokemonData);
 	const inputElement = popOverlayWhiteChoose.querySelector(".input");
 	//  console.log('Finns det någon input? ', inputElement)
 	inputElement.addEventListener("input", () => {
@@ -342,23 +346,12 @@ function pokemonCardDiv(pokemonData, popOverlayWhiteChoose) {
 
 		// Den här Click funktionen fungerar.
 		selectBtn.addEventListener("click", () => {
-			console.log("Du klickade på select knappen ", pokemon);
-			//myTeam.push(pokemon);
-			console.log("Anropar addPokemon");
 			addPokemonToTeam(pokemon);
-			console.log("POKEMON: " + pokemon);
 		});
 	});
 }
 
   
-
-
-
-
-
-
-
 // Returnerar det vita elementet som är i mitten av overlayen
 function createChoosePokemonOverlay() {
 	let popOverlayChoosePokemon = document.createElement("div");

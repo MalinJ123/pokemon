@@ -71,13 +71,29 @@ body {
 		position: fixed;
 		/* top: 7em; */
 	}
+	.choose-header,
+	
 }
 
 .choose-header,
 .myTeamHeader {
-	visibility: hidden;
-	font-size: 1px;
+	/* visibility: hidden; */
+	/* font-size: 1px; */
+	position:absolute;
+	top: -2.5em;
+	left: 4em;
 }
+
+h2 {
+	/* Add your styles here */
+	height: 2px; 
+	border: 5px solid rgb(255, 255, 255);
+	background-color: black;
+	font-size: 2em;
+	margin: 20px 0; 
+	color: #ff00cc;
+  }
+  
 
 @media (min-width: 600px) {
 	.background-pokemon-pic {
@@ -85,6 +101,18 @@ body {
 		width: fit-content;
 		height: 20em;
 	}
+}
+
+@media (max-width: 350px) {
+	h2 {
+		/* Add your styles here */
+		height: 2px; 
+		border: 5px solid rgb(255, 255, 255);
+		background-color: black;
+		font-size: 1.4em;
+		margin: 20px 0; 
+		color: #ff00cc;
+	  }
 }
 
 .popOverlay-choosePokemon,
@@ -119,16 +147,7 @@ body {
 
 /* ------------------------------ Choose Team -------------- */
 
-h2 {
-	/* Add your styles here */
-	height: 2px; /* Sets the height of the horizontal line */
-	border: 5px solid rgb(255, 255, 255); /* Removes the default border */
-	background-color: black; /* Sets the color of the horizontal line */
-	font-size: 4em;
-	margin: 20px 0; /* Adds top and bottom margin to the horizontal line */
-	color: #ff00cc;
-  }
-  
+
 .pokemon:nth-child(-n+4) {
 	border: 12px solid #be931d;
 	display: flex;
@@ -145,6 +164,7 @@ h2 {
 	margin: 10px;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	opacity: 50%;
 
  }
 
@@ -158,8 +178,9 @@ h2 {
  } */
 
  .ability {
-	display: block;
-	/* margin-bottom: 10px;  */
+	display: inline-block;
+	margin-bottom: 10px;
+	/* font-size: ;  */
 	
   } 
 
