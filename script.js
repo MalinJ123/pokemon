@@ -26,6 +26,14 @@ choosePokemonBtn.addEventListener("click", async () => {
 	);
 });
 
+// // för varje abilities 
+// pokemon.abilities.forEach(pokemon => {
+// 	let newAbilities = document.createElement('legend')
+
+// 	newAbilities.textContent = pokemon.ability.name
+// 	cardDiv.append(newAbilities)
+// });
+
 function createMyTeamPopOverlay() {
 	// Only create the overlay if there are pokémon in the team
 	if (myTeam.length > 0) {
@@ -182,17 +190,31 @@ function createMyTeamPopOverlay() {
 
 // ---------------
 
-//   inte mer än 3 i myteam
-function addPokemonToTeam(pokemon) {
-	console.log("Test");
 
-	if (myTeam.length <= 2) {
+
+function addPokemonToTeam(pokemon) {
+	if (myTeam.length <= 9) {
 		myTeam.push(pokemon);
-	} else if (myTeam.length > 2) {
+
+	} else if (myTeam.length === 3) {
+		myTeam.push(pokemon);
+		
+		// create h2 element for selected champions
+		const h2Selected = document.createElement("h2");
+		h2Selected.textContent = "The selected champions";
+		
+		// create h2 element for reserve team
+		const h2Reserve = document.createElement("h2");
+		h2Reserve.textContent = "Reserve";
+		
+		// append headers and divs to body
+		popOverlayWhite.appendChild(h2Selected);
+		popOverlayWhite.appendChild(h2Reserve);
+	} else {
 		// create popup div element
 		const popup = document.createElement("div");
 		popup.classList.add("popup");
-		popup.textContent = "You can only have 3 pokemon on your team!";
+		popup.textContent = "You can only have 3 champions and 7 in reserve!";
 
 		// append popup to body
 		document.body.appendChild(popup);
@@ -206,9 +228,37 @@ function addPokemonToTeam(pokemon) {
 	return;
 }
 
+
+
+// // //   inte mer än 3 i myteam
+// function addPokemonToTeam(pokemon) {
+// 	console.log("Test");
+
+// 	if (myTeam.length <= 8) {
+// 		myTeam.push(pokemon);
+// 	} else if (myTeam.length > 8) {
+// 		// create popup div element
+// 		const popup = document.createElement("div");
+// 		popup.classList.add("popup");
+// 		popup.textContent = "You can only have 6 reserve pokemon !";
+	
+	
+
+// 		// append popup to body
+// 		document.body.appendChild(popup);
+
+// 		// remove popup after 3 seconds
+// 		setTimeout(() => {
+// 			popup.remove();
+// 		}, 3000);
+// 	}
+
+// 	return;
+// }
+
 async function getPokemonData() {
 	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
-	const url = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
+	const url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
 
 	console.log("Nu hämtar Jag data i från API");
 	const response = await fetch(url);
@@ -226,9 +276,25 @@ async function getPokemonData() {
 		let responseData = await pokemonResponse.json();
 
 		// Om du vill ha shiny byt på två ställen i koden
-		pokemon.sprites = responseData.sprites.front_shiny;
-		// pokemon.sprites = responseData.sprites.front_default;
-		pokemon.abilities = responseData.abilities[0].ability.name;
+		// pokemon.sprites = responseData.sprites.front_shiny;
+		pokemon.sprites = responseData.sprites.front_default;
+
+		// för varje ability
+		// console.log(
+		// 	"Abilities för varje pokemon. ",
+		// 	pokemon,
+		// 	responseData.abilities
+		// );
+		pokemon.abilities = ''
+		responseData.abilities.forEach(object => {
+			console.log('Object is:', object)
+			// let newAbility = document.createElement('legend')
+			// newAbility.textContent = pokemon.ability.name
+			// document.body.append(newAbility)
+			pokemon.abilities += object.ability.name
+		});
+
+
 		// pokemon.sprites är en bildlänk
 		numberComplete++;
 		if (numberComplete === data.results.length) {
@@ -335,7 +401,8 @@ function renderPokemonData(pokemonData, popOverlayWhiteChoose) {
 			selectBtn.textContent = "Select";
 
 			cardImg.src = pokemon.sprites;
-			ability = responseData.abilities;
+			// ability = responseData.abilities;
+			// ability.innerText = 'test'
 
 			name.innerText = pokemon.name;
 			// pokemon.sprites = responseData.sprites.front_shiny;

@@ -118,7 +118,36 @@ body {
 }
 
 /* ------------------------------ Choose Team -------------- */
-.pokemon,
+
+h2 {
+	/* Add your styles here */
+	height: 2px; /* Sets the height of the horizontal line */
+	border: 5px solid rgb(255, 255, 255); /* Removes the default border */
+	background-color: black; /* Sets the color of the horizontal line */
+	font-size: 4em;
+	margin: 20px 0; /* Adds top and bottom margin to the horizontal line */
+	color: #ff00cc;
+  }
+  
+.pokemon:nth-child(-n+4) {
+	border: 12px solid #be931d;
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	border-radius: 5px;
+	box-shadow: 10px 2px 5px rgb(117, 114, 114) 
+ }
+ .pokemon:nth-child(n+5) {
+
+	border: 6px solid black;
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+ }
+
 .myChooseteam-card {
 	border: 2px solid rgba(0, 0, 0, 0.494);
 	display: flex;
