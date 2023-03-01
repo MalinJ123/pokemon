@@ -69,10 +69,7 @@ body {
 	.popOverlayWhite-choosePokemon,
 	.popOverlayWhite {
 		position: fixed;
-		/* top: 7em; */
 	}
-	.choose-header,
-	
 }
 
 .choose-header,
@@ -80,14 +77,15 @@ body {
 	/* visibility: hidden; */
 	/* font-size: 1px; */
 	position:absolute;
-	top: -2.5em;
+	top: -3.5em;
 	left: 4em;
+
 }
 
 h2 {
 	/* Add your styles here */
 	height: 2px; 
-	border: 5px solid rgb(255, 255, 255);
+	/* border: 5px solid rgb(255, 255, 255); */
 	background-color: black;
 	font-size: 2em;
 	margin: 20px 0; 
@@ -101,25 +99,55 @@ h2 {
 		width: fit-content;
 		height: 20em;
 	}
+	
 }
 
-@media (max-width: 350px) {
+@media (min-width: 350px) {
 	h2 {
 		/* Add your styles here */
 		height: 2px; 
-		border: 5px solid rgb(255, 255, 255);
+		/* border: 5px solid rgb(255, 255, 255); */
 		background-color: black;
-		font-size: 1.4em;
-		margin: 20px 0; 
+		font-size: 1em;
+		margin: 10px 0; 
 		color: #ff00cc;
 	  }
+	  
 }
 
-.popOverlay-choosePokemon,
+.popOverlay-choosePokemon{
+	background-color: rgba(0, 0, 0, 0.905);
+	min-height: 100vh;
+	/* height: 100%; */
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4em 4em;
+
+}
+.popOverlayWhite-choosePokemon {
+	position: relative;
+	top: 0px;
+	background-color: #ffffffe8;
+	color: rgb(0, 0, 0);
+	width: 80%;
+	height: auto;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 8em 4em 1em 4em;
+}
+
 .popOverlay-MyTeam {
 	background-color: rgba(0, 0, 0, 0.905);
-	height: 100%;
-	width: 100%;
+	min-height: 100vh;
+	min-width: 100vw;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -129,9 +157,9 @@ h2 {
 	padding: 4em 4em;
 }
 
-.popOverlayWhite-choosePokemon,
+
 .popOverlayWhite {
-	position: absolute;
+	position: relative;
 	top: 0px;
 	background-color: #ffffffe8;
 	color: rgb(0, 0, 0);
@@ -165,24 +193,7 @@ h2 {
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	opacity: 50%;
-
  }
-
- /* .myChooseteam-card > h6 {
-	display: flex;
-	flex-direction: column;
-	font-size: 10px;
-	margin:10px;
-	display: block;
-
- } */
-
- .ability {
-	display: inline-block;
-	margin-bottom: 10px;
-	/* font-size: ;  */
-	
-  } 
 
 .myChooseteam-card {
 	border: 2px solid rgba(0, 0, 0, 0.494);
@@ -196,7 +207,7 @@ h2 {
 .input {
 	border: 2px dotted black;
 	padding: 0.5em;
-	margin: 2em 0em 1em 0em;
+	display: block;
 }
 
 
@@ -237,9 +248,19 @@ h2 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: rgba(255, 0, 0, 0.8);
+	background-color: rgba(6, 5, 5, 0.8);
 	color: white;
 	padding: 10px;
 	font-size: 18px;
 	border-radius: 5px;
+}
+
+ul{
+	list-style-type: none ;
+	
+}
+
+ul > li {
+	font-size: 10px;
+	margin-bottom: 5px;
 }
