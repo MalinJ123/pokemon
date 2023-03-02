@@ -219,7 +219,7 @@ function createMyTeamPopOverlay() {
 // DEN HÄR FUNKTIONEN HÄMTAR DATA IFRÅN API:ET
 async function getPokemonData() {
 	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
-	const url = "https://pokeapi.co/api/v2/pokemon?limit=1200&offset=0";
+	const url = "https://pokeapi.co/api/v2/pokemon?limit=200&offset=0";
 
 	console.log("Nu hämtar Jag data i från API");
 	const response = await fetch(url);
