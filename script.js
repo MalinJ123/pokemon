@@ -13,7 +13,6 @@ let myTeam = []; // här lägger du till pokemons till laget
 myTeamBtn.addEventListener("click", () => {
 	createMyTeamPopOverlay();
 });
-
 choosePokemonBtn.addEventListener("click", async () => {
 	// Hämta all information
 	pokemonData = await getPokemonData();
@@ -217,7 +216,6 @@ function createMyTeamPopOverlay() {
 		}, 3000);
 	}
 }
-
 // DEN HÄR FUNKTIONEN HÄMTAR DATA IFRÅN API:ET
 async function getPokemonData() {
 	// sätt limit i url till 1000, så hämtar du fler pokemon. Offset ex = 5, då byter den ut 5 (plockar ut 5 pokemon efter 5.e plats )
@@ -252,7 +250,6 @@ async function getPokemonData() {
 
 	return data;
 }
-
 // NÅGOT MED SELECTED KNAPPEN
 function renderFilteredPokemonData(filteredPokemons, popOverlayWhiteChoose) {
 	// Clear the existing cards
@@ -273,9 +270,6 @@ function renderFilteredPokemonData(filteredPokemons, popOverlayWhiteChoose) {
 		});
 	}
 }
-
-//HÄR ÄR PROBLEMET MED SEARCH FUNKTIONEN!
-
 // // HÄR SKAPAS ELEMENTEN I CHOOSEN OCH I VARJE ELEMENT FINNS EN SELECTBUTTON
 function pokemonCardDiv(pokemonsToRender, popOverlayWhiteChoose) {
 	const inputElement = popOverlayWhiteChoose.querySelector(".input");
@@ -283,22 +277,12 @@ function pokemonCardDiv(pokemonsToRender, popOverlayWhiteChoose) {
 	inputElement.addEventListener("keyup", () => {
 		let inputValue = inputElement.value.toLowerCase();
 		console.log(inputValue);
-		// console.log("pokemondata . lenght", pokemonData);
+
 		let filteredPokemonData = pokemonData.results.filter(
 			(pokemon) => pokemon.name.toLowerCase().indexOf(inputValue) !== -1
 		);
-		// renderFilteredPokemonData(pokemonData, popOverlayWhiteChoose);
-		// console.log('innan while', inputValue.length > 0, filteredPokemonData.length === 0 )
-
-		// add loop to continue searching when a letter is deleted
-		// while (inputValue.length > 0 && filteredPokemonData.length === 0) {
 		console.log(pokemonData);
-		//   inputValue = inputValue.slice(0, -1);
-		// filteredPokemonData = pokemonData.filter(
-		// 	(pokemon) => pokemon.name.toLowerCase().indexOf(inputValue) !== -1
-		// );
 		renderFilteredPokemonData(filteredPokemonData, popOverlayWhiteChoose);
-		// }
 	});
 
 	pokemonsToRender.forEach((pokemon) => {
@@ -334,36 +318,28 @@ function pokemonCardDiv(pokemonsToRender, popOverlayWhiteChoose) {
 		});
 	});
 }
-
-//HÄR GÖR JAG TRY-CATCH ISH
 function addPokemonToTeam(pokemon) {
 	if (myTeam.length < 1200) {
 		myTeam.push(pokemon);
 
 		// Check if the added Pokemon is one of the first three in the array
 		if (myTeam.length <= 3) {
-			// create popup div element
 			const popup = document.createElement("div");
 			popup.classList.add("popup");
 			popup.textContent = "You have selected this Pokemon to the team!";
 
-			// append popup to body
 			document.body.appendChild(popup);
 
-			// remove popup after 3 seconds
 			setTimeout(() => {
 				popup.remove();
 			}, 1000);
 		} else {
-			// create popup div element
 			const popup = document.createElement("div");
 			popup.classList.add("popup");
 			popup.textContent = "This Pokemon will be a reserve.";
 
-			// append popup to body
 			document.body.appendChild(popup);
 
-			// remove popup after 3 seconds
 			setTimeout(() => {
 				popup.remove();
 			}, 1000);
@@ -414,7 +390,6 @@ function createChoosePokemonOverlay() {
 
 	return popOverlayWhiteChoosePokemon;
 }
-
 function createCardSelectBtn(cardDiv) {
 	let selectBtn = document.createElement("button");
 	selectBtn.classList.add("selectBtn");

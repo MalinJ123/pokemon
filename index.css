@@ -1,4 +1,5 @@
-/* font-family: 'Bubblegum Sans', cursive; */
+/* font-family: 'Bubblegum Sans', cursive; 
+*/
 
 * {
 	box-sizing: border-box;
@@ -6,11 +7,9 @@
 	padding: 0;
 	font-family: 'Bubblegum Sans', cursive;
 }
-
 body {
 	background-color:rgba(0, 0, 0, 1);
 }
-
 /* --------------START PAGE---------------- */
 .start-page {
 	display: flex;
@@ -20,20 +19,17 @@ body {
 	width: 100%;
 	height: auto;
 }
-
 .container {
 	display: flex;
 	flex-direction: column;
 	width: 10em;
 	height: 4em;
 }
-
 .pokemon-logga {
 	width: fit-content;
 	height: 5em;
 	margin: 2em 0 4em;
 }
-
 #myTeam-btn,
 #choosePokemon-btn {
 	border-radius: 10px;
@@ -41,37 +37,15 @@ body {
 	font-weight: bold;
 	margin-bottom: 0.5em;
 }
-
 #myTeam-btn:hover,
 #choosePokemon-btn:hover {
 	background-color: rgb(104, 58, 146);
 	color: white;
 	font-size: 15px;
 }
-
 .background-pokemon-pic {
 	margin-top: 3em;
 }
-
-@media (min-width: 430px) {
-	.background-pokemon-pic {
-		margin: 10em 0 4em;
-		width: fit-content;
-		height: 15em;
-	}
-
-	.pokemon-logga {
-		width: fit-content;
-		height: 7em;
-		margin: 2em 0 7em;
-	}
-
-	.popOverlayWhite-choosePokemon,
-	.popOverlayWhite {
-		position: fixed;
-	}
-}
-
 .choose-header,
 .myTeamHeader {
 	/* visibility: hidden; */
@@ -79,38 +53,13 @@ body {
 	position:absolute;
 	top: -3.5em;
 	left: 4em;
-
+	
 }
-
 h2 {
 	height: 2px; 
 	background-color: black;
 	color: #ff00cc;
-  }
-  
-
-@media (min-width: 600px) {
-	.background-pokemon-pic {
-		margin: 10em 0 4em;
-		width: fit-content;
-		height: 20em;
-	}
-	
 }
-
-@media (min-width: 350px) {
-	h2 {
-		/* Add your styles here */
-		height: 2px; 
-		/* border: 5px solid rgb(255, 255, 255); */
-		background-color: black;
-		font-size: 1em;
-		margin: 10px 0; 
-		color: #ff00cc;
-	  }
-	  
-}
-
 .popOverlay-choosePokemon{
 	background-color: rgba(0, 0, 0, 0.905);
 	min-height: 100vh;
@@ -139,7 +88,6 @@ h2 {
 	flex-wrap: wrap;
 	margin: 8em 4em 1em 4em;
 }
-
 .popOverlay-MyTeam {
 	background-color: rgba(0, 0, 0, 0.905);
 	min-height: 100vh;
@@ -152,8 +100,6 @@ h2 {
 	align-items: center;
 	padding: 4em 4em;
 }
-
-
 .popOverlayWhite {
 	position: relative;
 	top: 0px;
@@ -168,10 +114,7 @@ h2 {
 	flex-wrap: wrap;
 	margin: 8em 4em 1em 4em;
 }
-
 /* ------------------------------ Choose Team -------------- */
-
-
 .pokemon:nth-child(-n+4) {
 	border: 12px solid #be931d;
 	display: flex;
@@ -180,7 +123,6 @@ h2 {
 	border-radius: 5px;
 	box-shadow: 10px 2px 5px rgb(117, 114, 114) 
  }
- /* ---------------------Selected */
  
  .pokemon:nth-child(n+5) {
 
@@ -192,7 +134,6 @@ h2 {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	opacity: 50%;
  }
-
 .myChooseteam-card {
 	border: 2px solid rgba(0, 0, 0, 0.494);
 	display: flex;
@@ -201,15 +142,12 @@ h2 {
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 .input {
 	border: 2px dotted black;
 	padding: 0.5em;
 	display: block;
+	margin-top: 1.5em;
 }
-
-
-
 .upBtn:hover,
 .downBtn:hover,
 .selectBtn:hover,
@@ -224,7 +162,6 @@ h2 {
 	text-decoration: none;
 
 }
-
 .upBtn,
 .downBtn,
 .selectBtn,
@@ -239,8 +176,6 @@ h2 {
 	color: white;
 	box-shadow: 0 0 20px #eee;
 }
-
-/* If you have more than 3 pokemon this will show  */
 .popup {
 	position: fixed;
 	top: 50%;
@@ -252,13 +187,48 @@ h2 {
 	font-size: 18px;
 	border-radius: 5px;
 }
-
 ul{
 	list-style-type: none ;
 	
 }
-
 ul > li {
 	font-size: 10px;
 	margin-bottom: 5px;
+}
+@media (min-width: 430px) {
+	.background-pokemon-pic {
+		margin: 10em 0 4em;
+		width: fit-content;
+		height: 15em;
+	}
+
+	.pokemon-logga {
+		width: fit-content;
+		height: 7em;
+		margin: 2em 0 7em;
+	}
+
+	.popOverlayWhite-choosePokemon,
+	.popOverlayWhite {
+		position: fixed;
+	}
+}
+@media (min-width: 600px) {
+	.background-pokemon-pic {
+		margin: 10em 0 4em;
+		width: fit-content;
+		height: 20em;
+	}	
+}
+@media (min-width: 350px) {
+	h2 {
+		/* Add your styles here */
+		height: 2px; 
+		/* border: 5px solid rgb(255, 255, 255); */
+		background-color: black;
+		font-size: 1em;
+		margin: 10px 0; 
+		color: #ff00cc;
+	  }
+	  
 }
