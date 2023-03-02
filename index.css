@@ -184,6 +184,8 @@ h2 {
 	border-radius: 5px;
 	box-shadow: 10px 2px 5px rgb(117, 114, 114) 
  }
+ /* ---------------------Selected */
+ 
  .pokemon:nth-child(n+5) {
 
 	border: 6px solid black;
