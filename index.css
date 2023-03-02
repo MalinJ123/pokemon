@@ -91,7 +91,7 @@ h2 {
 .popOverlay-MyTeam {
 	background-color: rgba(0, 0, 0, 0.905);
 	min-height: 100vh;
-	min-width: 100vw;
+	/* min-width: 100vw; */
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -208,10 +208,6 @@ ul > li {
 		margin: 2em 0 7em;
 	}
 
-	.popOverlayWhite-choosePokemon,
-	.popOverlayWhite {
-		position: fixed;
-	}
 }
 @media (min-width: 600px) {
 	.background-pokemon-pic {
@@ -222,13 +218,23 @@ ul > li {
 }
 @media (min-width: 350px) {
 	h2 {
-		/* Add your styles here */
 		height: 2px; 
-		/* border: 5px solid rgb(255, 255, 255); */
 		background-color: black;
 		font-size: 1em;
 		margin: 10px 0; 
 		color: #ff00cc;
 	  }
-	  
+	  .popOverlay-MyTeam {
+		background-color: rgba(0, 0, 0, 0.905);
+		min-height: 100vh;
+		/* min-width: 100vw; */
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* padding: 4em 4em; */
+	}
+		  
 }
