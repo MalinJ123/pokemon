@@ -322,7 +322,6 @@ function addPokemonToTeam(pokemon) {
 	if (myTeam.length < 1200) {
 		myTeam.push(pokemon);
 
-		// Check if the added Pokemon is one of the first three in the array
 		if (myTeam.length <= 3) {
 			const popup = document.createElement("div");
 			popup.classList.add("popup");
