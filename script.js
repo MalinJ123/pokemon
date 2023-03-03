@@ -273,7 +273,7 @@ function renderFilteredPokemonData(filteredPokemons, popOverlayWhiteChoose) {
 // // HÄR SKAPAS ELEMENTEN I CHOOSEN OCH I VARJE ELEMENT FINNS EN SELECTBUTTON
 function pokemonCardDiv(pokemonsToRender, popOverlayWhiteChoose) {
 	const inputElement = popOverlayWhiteChoose.querySelector(".input");
-	console.log(pokemonData.results);
+	// console.log(pokemonData.results);
 	inputElement.addEventListener("keyup", () => {
 		let inputValue = inputElement.value.toLowerCase();
 		console.log(inputValue);

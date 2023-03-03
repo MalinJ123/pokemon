@@ -148,6 +148,7 @@ h2 {
 	padding: 0.5em;
 	display: block;
 	margin-top: 1.5em;
+
 }
 .upBtn:hover,
 .downBtn:hover,
@@ -207,7 +208,17 @@ ul > li {
 		height: 7em;
 		margin: 2em 0 7em;
 	}
+}
 
+@media (max-width: 430px){
+	.input {
+		border: 2px dotted black;
+		padding: 0.5em;
+		display: block;
+		margin-top: 1.5em;
+		width:7rem;
+	}
+	
 }
 @media (min-width: 600px) {
 	.background-pokemon-pic {
@@ -215,6 +226,7 @@ ul > li {
 		width: fit-content;
 		height: 20em;
 	}	
+
 }
 @media (min-width: 350px) {
 	  .popOverlay-MyTeam {
@@ -229,5 +241,13 @@ ul > li {
 		align-items: center;
 		/* padding: 4em 4em; */
 	}
-		  
+		 
 }
+		 
+/* .input {
+	border: 2px dotted black;
+	padding: 0.5em;
+	display: block;
+	margin-top: 1.5em;
+	width:7rem;
+} */
