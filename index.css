@@ -59,6 +59,7 @@ h2 {
 	height: 2px; 
 	background-color: black;
 	color: #ff00cc;
+	font-size: 1em;
 }
 .popOverlay-choosePokemon{
 	background-color: rgba(0, 0, 0, 0.905);
@@ -201,7 +202,6 @@ ul > li {
 		width: fit-content;
 		height: 15em;
 	}
-
 	.pokemon-logga {
 		width: fit-content;
 		height: 7em;
@@ -217,13 +217,6 @@ ul > li {
 	}	
 }
 @media (min-width: 350px) {
-	h2 {
-		height: 2px; 
-		background-color: black;
-		font-size: 1em;
-		margin: 10px 0; 
-		color: #ff00cc;
-	  }
 	  .popOverlay-MyTeam {
 		background-color: rgba(0, 0, 0, 0.905);
 		min-height: 100vh;
