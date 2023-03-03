@@ -227,7 +227,7 @@ ul > li {
 	  .popOverlay-MyTeam {
 		background-color: rgba(0, 0, 0, 0.905);
 		min-height: 100vh;
-		/* min-width: 100vw; */
+		min-width: 100vw;
 		position: absolute;
 		top: 0;
 		left: 0;
